@@ -1,29 +1,41 @@
-import * as Oct from './lib/oct';
+export * from './types/choice'
+export * from './types/oct'
+export * from './types/meta'
+export * from './types/mapOct'
+export * from './types/mapSquare'
 
-// Cottage (Start)
-let cottage_name = "Cottage";
-let cottage_description = "You are standing in a small cottage.";
-let cottage_objects = [ "Fishing Pole" ];
+export * from './lib/select'
+export * from './lib/wander'
 
-// Garden Path
-let gardenPath_name = "Lush Garden Path";
-let gardenPath_description = "You are standing on a lush garden path. There is a cottage here.";
-let gardenPath_objects = [ "Rose Bush" ];
+import { Wander } from '.'
 
-// Fishing Pond
-let fishingPond_name = "Fishing Pond";
-let fishingPond_description = "You are at the edge of a small fishing pond.";
-let fishingPond_objects = [ "Fish" ];
+const wander = new Wander();
+wander.start();
 
-let fishingPond = new Oct.MapSquare(fishingPond_name, fishingPond_description, 1, fishingPond_objects);
-let gardenPath = new Oct.MapSquare(gardenPath_name, gardenPath_description, 1, gardenPath_objects, null, null, null, fishingPond);
-let cottage = new Oct.MapSquare(cottage_name, cottage_description, 1, cottage_objects, null, null, gardenPath);
+// // Cottage (Start)
+// const cottageName = "Cottage";
+// const cottageDescription = "You are standing in a small cottage.";
+// const cottageObjects = [ "Fishing Pole" ];
+//
+// // Garden Path
+// const gardenPathName = "Lush Garden Path";
+// const gardenPathDescription = "You are standing on a lush garden path. There is a cottage here.";
+// const gardenPathObjects = [ "Rose Bush" ];
+//
+// // Fishing Pond
+// const fishingPondName = "Fishing Pond";
+// const fishingPondDescription = "You are at the edge of a small fishing pond.";
+// const fishingPondObjects = [ "Fish" ];
+//
+// const fishingPond = new MapSquare(fishingPondName, fishingPondDescription, 1, fishingPondObjects);
+// const gardenPath = new MapSquare(gardenPathName, gardenPathDescription, 1, gardenPathObjects, null, null, null, fishingPond);
+// const cottage = new MapSquare(cottageName, cottageDescription, 1, cottageObjects, null, null, gardenPath);
 
-cottage.printFullDescription();
-cottage.printExits();
+// cottage.printFullDescription();
+// cottage.printExits();
 
-gardenPath.printFullDescription();
-gardenPath.printExits();
-
-fishingPond.printFullDescription();
-fishingPond.printExits();
+// gardenPath.printFullDescription();
+// gardenPath.printExits();
+//
+// fishingPond.printFullDescription();
+// fishingPond.printExits();

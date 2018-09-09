@@ -1,0 +1,25 @@
+{
+  title: "Action Castle",
+  copyright: "Memento Mori Games",
+  tiles: {
+    cottage: {
+      name: "Cottage",
+      description: "You are standing in a small cottage.",
+      objects: [ "Fishing Pole" ],
+      value: 1
+    },
+    gardenPath: {
+      name: "Lush Garden Path",
+      description: "You are standing on a lush garden path. There is a cottage here.",
+      objects: [ "Rose Bush" ],
+      value: 1
+    },
+    fishingPond: {
+      name: "Fishing Pond",
+      description: "You are at the edge of a small fishing pond.",
+      objects: [ "Fish" ],
+      value: 1
+    }
+  },
+  objects: {}
+}
