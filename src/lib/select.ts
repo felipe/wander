@@ -18,6 +18,11 @@ export class Select {
     return response
   }
 
+  public static getAction () {
+    const response = readlineSync.question('')
+    return response
+  }
+
   public static YNQuestion (question: string) {
     return readlineSync.keyInYN('\n' + question + ' ')
   }

@@ -1,5 +1,6 @@
 import { Choice } from '../types/choice'
 import { Select } from './select'
+import { GameController } from './gameController'
 import { GameMap } from './gameMap'
 
 export class Wander {
@@ -7,10 +8,11 @@ export class Wander {
   private games:Choice[] = [];
 
   constructor () {
-    this.games = Choice.build(["Action Castle"]);
+    this.games = Choice.build(["Action Castle"])
   }
   public start () {
-    let selectedGame = Select.builder('What Game?', this.games);
-    new GameMap(selectedGame);
+    let selectedGame = Select.builder('What Game?', this.games)
+    let gameMap = new GameMap(selectedGame)
+    new GameController(gameMap)
   }
 }

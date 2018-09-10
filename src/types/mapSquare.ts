@@ -90,11 +90,17 @@ export class MapSquare implements Tile {
   private setTop(tile: MapSquare | MapOct) {
     this.top = tile
   }
+  public getTop() {
+    return this.top
+  }
   private setLeft(tile: MapSquare | MapOct) {
     this.left = tile
   }
   private setRight(tile: MapSquare | MapOct) {
     this.right = tile
+  }
+  public getRight() {
+    return this.right
   }
   private setBottom(tile: MapSquare | MapOct) {
     this.bottom = tile

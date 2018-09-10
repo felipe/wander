@@ -5,6 +5,7 @@ import { MapSquare } from '../types/mapSquare'
 export class GameMap {
 
   tiles: Map<string, MapSquare> | Map<string, MapOct>;
+  startTile: MapSquare | MapOct
 
   constructor(game: string) {
     const games: any = {
@@ -47,13 +48,8 @@ export class GameMap {
       }
     }
 
-    this.tiles = this.loadTiles(games[game].tileType, games[game].tiles);
-
-    // Start the map
-    const startTile = this.tiles.get(games[game].startTile)
-    startTile!.printFullDescription()
-    startTile!.printExits()
-
+    this.tiles = this.loadTiles(games[game].tileType, games[game].tiles)
+    this.startTile = <MapSquare | MapOct> this.tiles.get(games[game].startTile)
   }
 
   loadTiles(type: string, rawTiles: Tile[]) {
