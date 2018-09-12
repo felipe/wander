@@ -1,4 +1,4 @@
-import { MapOct } from './MapOct'
+import { MapOct } from './mapOct'
 import { Tile } from './tile'
 
 const chalk = require('chalk')
@@ -90,7 +90,7 @@ export class MapSquare implements Tile {
     this.exits.push(direction)
   }
 
-  public getOut() {
+  public getOut(): MapSquare | MapOct | null {
     if (this.exits.length === 1) {
       if(this.top !== null) {
         return this.top

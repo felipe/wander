@@ -80,7 +80,7 @@ export class GameController {
     }
   }
 
-  setTile(tile: MapSquare | MapOct) {
+  setTile(tile: MapSquare | MapOct | null) {
     if(tile != null) {
       this.currentTile = tile
     } else {
