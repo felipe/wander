@@ -1,4 +1,4 @@
-import { MapSquare } from './MapSquare';
+import { MapSquare } from './MapSquare'
 
 export class MapOct extends MapSquare {
   constructor(name: string,
@@ -13,10 +13,10 @@ export class MapOct extends MapSquare {
               bottomLeft: MapSquare | MapOct | null = null,
               bottom: MapSquare | MapOct | null = null,
               bottomRight: MapSquare | MapOct | null = null) {
-    super(name, description, value, objects, top, left, right, bottom);
-    this.topLeft = topLeft;
-    this.topRight = topRight;
-    this.bottomLeft = bottomLeft;
-    this.bottomRight = bottomRight;
+    super(name, description, value, objects, top, left, right, bottom)
+    this.topLeft = topLeft
+    this.topRight = topRight
+    this.bottomLeft = bottomLeft
+    this.bottomRight = bottomRight
   }
 }

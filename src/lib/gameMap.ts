@@ -4,7 +4,7 @@ import { MapSquare } from '../types/mapSquare'
 
 export class GameMap {
 
-  tiles: Map<string, MapSquare> | Map<string, MapOct>;
+  tiles: Map<string, MapSquare> | Map<string, MapOct>
   startTile: MapSquare | MapOct
 
   constructor(game: string) {
@@ -12,7 +12,7 @@ export class GameMap {
       action_castle: {
         title: "Action Castle",
         copyright: "Memento Mori Games",
-        startTile: 'cottage',
+        startTile: "cottage",
         tileType: "square",
         tiles: {
           cottage: {
@@ -22,6 +22,9 @@ export class GameMap {
             value: 1,
             exits: {
               right: "gardenPath"
+            },
+            exitAlias: {
+              right: "Out (of the cottage)"
             }
           },
           gardenPath: {
@@ -32,6 +35,10 @@ export class GameMap {
             exits: {
               left: "cottage",
               bottom: "fishingPond"
+            },
+            exitAlias: {
+              left: "West (into the cottage)",
+              bottom: "South"
             }
           },
           fishingPond: {
@@ -41,10 +48,29 @@ export class GameMap {
             value: 1,
             exits: {
               top: "gardenPath"
+            },
+            exitAlias: {
+              top: "North"
             }
           }
         },
-        objects: []
+        objects: {
+          fishingRod: {
+            name: "Fishing Pole",
+            value: 1,
+            quantity: 1
+          },
+          roseBush: {
+            name: "Rose Bush",
+            value: 1,
+            quantity: 1
+          },
+          fish: {
+            name: "Fish",
+            value: 1,
+            quantity: 1
+          }
+        }
       }
     }
 
@@ -53,12 +79,12 @@ export class GameMap {
   }
 
   loadTiles(type: string, rawTiles: Tile[]) {
-    let loadedSquares = new Map<string, MapSquare>();
-    let loadedOcts = new Map<string, MapOct>();
+    let loadedSquares: Map<string, MapSquare> = new Map<string, MapSquare>()
+    let loadedOcts: Map<string, MapOct> = new Map<string, MapOct>()
 
     // Create Tiles
     Object.keys(rawTiles).forEach((key:string)=>{
-      let tile = rawTiles[key];
+      let tile = rawTiles[key]
       switch(type) {
         case 'octagon':
           loadedOcts.set(key, new MapOct(tile.name, tile.description, tile.value, tile.objects))
@@ -70,7 +96,7 @@ export class GameMap {
     })
 
     // Assign Exits
-    let exitMap: Map<string, MapSquare> | Map<string, MapOct>;
+    let exitMap: Map<string, MapSquare> | Map<string, MapOct>
     switch(type) {
       case 'octagon':
         exitMap = loadedOcts
@@ -81,9 +107,10 @@ export class GameMap {
     }
     exitMap.forEach((tile, key) => {
       const rawExits = rawTiles[key].exits
+      const rawExitAlias = rawTiles[key].exitAlias
       const currentTile = exitMap.get(key)
       Object.keys(rawExits).forEach((exitKey:string)=>{
-        currentTile.addExit(exitKey, exitMap.get(rawExits[exitKey]))
+        currentTile!.addExit(exitKey, <MapSquare | MapOct> exitMap.get(<string> rawExits[exitKey]), rawExitAlias[exitKey])
       })
     })
 

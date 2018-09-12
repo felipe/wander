@@ -5,7 +5,7 @@ import { GameMap } from './gameMap'
 
 export class Wander {
 
-  private games:Choice[] = [];
+  private games:Choice[] = []
 
   constructor () {
     this.games = Choice.build(["Action Castle"])
