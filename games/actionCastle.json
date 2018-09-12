@@ -26,7 +26,7 @@
         bottom: "fishingPond"
       },
       exitAlias: {
-        left: "In (to the cottage)",
+        left: "West (into the cottage)",
         bottom: "South"
       }
     },
@@ -43,5 +43,21 @@
       }
     }
   },
-  objects: []
+  objects: {
+    fishingRod: {
+      name: "Fishing Pole",
+      value: 1,
+      quantity: 1
+    },
+    roseBush: {
+      name: "Rose Bush",
+      value: 1,
+      quantity: 1
+    },
+    fish: {
+      name: "Fish",
+      value: 1,
+      quantity: 1
+    }
+  }
 }
