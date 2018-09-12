@@ -6,8 +6,8 @@ export interface Meta {
   // Value
   readonly value: number
 
-  // Objects
-  readonly objects: string[]
+  // Items
+  readonly items: string[]
 
   // Location
   readonly exits: string[]

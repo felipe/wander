@@ -7,7 +7,7 @@ export class MapSquare implements Tile {
   public name = ""
   public description = ""
   public value = 0
-  public objects: string[] = []
+  public items: string[] = []
 
   public exits: string[] = []
 
@@ -25,7 +25,7 @@ export class MapSquare implements Tile {
 
   constructor(name: string,
               description: string,
-              value: number, objects: string[],
+              value: number, items: string[],
               top: MapSquare | MapOct | null = null,
               left: MapSquare | MapOct | null = null,
               right: MapSquare | MapOct | null = null,
@@ -34,7 +34,7 @@ export class MapSquare implements Tile {
     this.name = name
     this.description = description
     this.value = value
-    this.objects = objects
+    this.items = items
 
     this.top = top
     if(top != null) { this.exits.push("top") }
@@ -167,14 +167,14 @@ export class MapSquare implements Tile {
   }
 
   private getTextFullDescription() {
-    return this.description + " " + this.getTextObjectList()
+    return this.description + " " + this.getTextItemList()
   }
 
-  private getTextObjectList() {
-    let objects = ""
-    this.objects.forEach((object)=>{
-      objects += `There is a ${chalk.underline.bold(object)} here. `
+  private getTextItemList() {
+    let items = ""
+    this.items.forEach((item)=>{
+      items += `There is a ${chalk.underline.bold(item)} here. `
     })
-    return objects
+    return items
   }
 }

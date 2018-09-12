@@ -4,7 +4,7 @@ export class MapOct extends MapSquare {
   constructor(name: string,
               description: string,
               value: number,
-              objects: string[],
+              items: string[],
               topLeft: MapSquare | MapOct | null = null,
               top: MapSquare | MapOct | null = null,
               topRight: MapSquare | MapOct | null = null,
@@ -13,7 +13,7 @@ export class MapOct extends MapSquare {
               bottomLeft: MapSquare | MapOct | null = null,
               bottom: MapSquare | MapOct | null = null,
               bottomRight: MapSquare | MapOct | null = null) {
-    super(name, description, value, objects, top, left, right, bottom)
+    super(name, description, value, items, top, left, right, bottom)
     this.topLeft = topLeft
     this.topRight = topRight
     this.bottomLeft = bottomLeft

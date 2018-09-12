@@ -1,0 +1,63 @@
+{
+  "title": "Action Castle",
+  "copyright": "Memento Mori Games",
+  "startTile": "cottage",
+  "tileType": "square",
+  "tiles": {
+    "cottage": {
+      "name": "Cottage",
+      "description": "You are standing in a small cottage.",
+      "items": [ "Fishing Pole" ],
+      "value": 1,
+      "exits": {
+        "right": "gardenPath"
+      },
+      "exitAlias": {
+        "right": "Out (of the cottage)"
+      }
+    },
+    "gardenPath": {
+      "name": "Lush Garden Path",
+      "description": "You are standing on a lush garden path. There is a cottage here.",
+      "items": [ "Rose Bush" ],
+      "value": 1,
+      "exits": {
+        "left": "cottage",
+        "bottom": "fishingPond"
+      },
+      "exitAlias": {
+        "left": "West (into the cottage)",
+        "bottom": "South"
+      }
+    },
+    "fishingPond": {
+      "name": "Fishing Pond",
+      "description": "You are at the edge of a small fishing pond.",
+      "items": [ "Fish" ],
+      "value": 1,
+      "exits": {
+        "top": "gardenPath"
+      },
+      "exitAlias": {
+        "top": "North"
+      }
+    }
+  },
+  "items": {
+    "fishingRod": {
+      "name": "Fishing Pole",
+      "value": 1,
+      "quantity": 1
+    },
+    "roseBush": {
+      "name": "Rose Bush",
+      "value": 1,
+      "quantity": 1
+    },
+    "fish": {
+      "name": "Fish",
+      "value": 1,
+      "quantity": 1
+    }
+  }
+}
