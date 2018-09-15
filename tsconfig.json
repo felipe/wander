@@ -12,6 +12,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "noImplicitReturns": false,
+    "suppressImplicitAnyIndexErrors": true,
     "noFallthroughCasesInSwitch": true,
     "traceResolution": false,
     "listEmittedFiles": false,

@@ -15,16 +15,24 @@ enum MovementActions {
     out
 }
 
-enum ManipulationActions {
+enum ObtainActions {
   take,
+  swipe,
   steal
 }
 
-enum SpeechActions {
-  say,
-  shout,
-  whisper
+enum ObservationActions {
+  look,
+  examine,
+  check,
+  inspect
 }
+
+// enum SpeechActions {
+//   say,
+//   shout,
+//   whisper
+// }
 
 export class GameController {
   map: GameMap
@@ -39,7 +47,7 @@ export class GameController {
     let selectedAction = Select.getAction().toLowerCase().trim()
     console.log(`THIS IS THE ACTION |${selectedAction}|`)
 
-    if(Object.values(MovementActions).includes(selectedAction)){
+    if (Object.values(MovementActions).includes(selectedAction)){
       console.log('Movement Action')
       if(selectedAction === 'out') {
         this.setTile(<MapSquare | MapOct> this.currentTile.getOut())
@@ -69,9 +77,12 @@ export class GameController {
         this.setTile(<MapSquare | MapOct> this.currentTile.getBottomRight())
       }
       this.enterTile()
-    } else if (selectedAction === "examine") {
-      console.log('Other Action')
-      this.performAction(selectedAction)
+    } else if (Object.values(ObtainActions).includes(selectedAction)) {
+      console.log('Obtain Action')
+      this.obtainAction(selectedAction)
+    } else if (Object.values(ObservationActions).includes(selectedAction)) {
+      console.log('Observation Action')
+      this.observeAction(selectedAction)
     } else if (selectedAction === "exit") {
       process.exit(0)
     } else {
@@ -95,8 +106,18 @@ export class GameController {
     this.actionQuery()
   }
 
-  performAction(action: string) {
-    console.log('performed action')
+  obtainAction(action: string) {
+    console.log('Took action')
+    this.actionQuery()
+  }
+
+  manilulationAction(action: string) {
+    console.log('Moved/Enabled Action')
+    this.actionQuery()
+  }
+
+  observeAction(action: string) {
+    console.log('Moved/Enabled Action')
     this.actionQuery()
   }
 }

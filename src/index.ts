@@ -4,6 +4,7 @@ export * from './types/meta'
 export * from './types/mapOct'
 export * from './types/mapSquare'
 
+export * from './lib/parse'
 export * from './lib/select'
 export * from './lib/wander'
 
