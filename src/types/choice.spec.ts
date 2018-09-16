@@ -1,5 +1,5 @@
 import { test } from 'ava'
-import { Choice } from 'wander'
+import { Choice } from './choice'
 
 let choice1 = new Choice('Name')
 let choice2 = new Choice('Complex Name')

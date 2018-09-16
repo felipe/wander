@@ -10,8 +10,19 @@ export * from './lib/wander'
 
 import { Wander } from '.'
 
-const wander = new Wander();
-wander.start();
+if (process.argv.length <= 2)  {
+  if(process.argv[1].indexOf('test-worker.js') != -1) {
+    process.exit(-1)
+  } else {
+    console.log("Usage: " + __filename + " start");
+    process.exit(-1)
+  }
+} else {
+  if (process.argv[2] === "start") {
+    const wander = new Wander();
+    wander.start();
+  }
+}
 
 // // Cottage (Start)
 // const cottageName = "Cottage";

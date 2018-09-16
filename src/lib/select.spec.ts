@@ -1,5 +1,5 @@
 import { test } from 'ava'
-import { Select } from 'wander'
+import { Select } from './select'
 
 let select = new Select()
 

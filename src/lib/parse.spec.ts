@@ -1,5 +1,5 @@
 import { test } from 'ava'
-import { Parse } from 'wander'
+import { Parse } from './parse'
 
 let command1 = "north"
 let command2 = "go north"
@@ -11,10 +11,10 @@ let command2 = "go north"
 // let command8
 // let command9
 
-test('Choice:object', t => {
+test('Command 1', t => {
   t.deepEqual(new Parse(command1), {"action": "north"})
 })
 
-test('Choice:object', t => {
+test('Command 2', t => {
   t.deepEqual(new Parse(command2), {"action": "north"})
 })
