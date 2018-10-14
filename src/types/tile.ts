@@ -101,51 +101,67 @@ export  class Tile implements Tile {
     private setTop(tile: MapSquare | MapOct) {
       this.top = tile
     }
+
     public getTop() {
       return this.top
     }
+
     private setLeft(tile: MapSquare | MapOct) {
       this.left = tile
     }
+
     public getLeft() {
       return this.left
     }
+
     private setRight(tile: MapSquare | MapOct) {
       this.right = tile
     }
+
     public getRight() {
       return this.right
     }
+
     private setBottom(tile: MapSquare | MapOct) {
       this.bottom = tile
     }
+
     public getBottom() {
       return this.bottom
     }
+
     private setTopLeft(tile: MapSquare | MapOct) {
       this.topLeft = tile
     }
+
     public getTopLeft() {
       return this.topLeft
     }
+
     private setTopRight(tile: MapSquare | MapOct) {
       this.topRight = tile
     }
+
     public getTopRight() {
       return this.topRight
     }
+
     private setBottomLeft(tile: MapSquare | MapOct) {
       this.bottomLeft = tile
     }
+
     public getBottomLeft() {
       return this.bottomLeft
     }
+
     private setBottomRight(tile: MapSquare | MapOct) {
       this.bottomRight = tile
     }
+
     public getBottomRight() {
       return this.bottomRight
     }
+
     private getTextExitList() {
       let exits = ""
       this.exits.forEach((exit, index)=>{

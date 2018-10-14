@@ -1,38 +1,9 @@
 import { GameMap } from './gameMap'
 import { Select } from './select'
+import { Parse } from './parse'
 import { MapOct } from '../types/mapOct'
 import { MapSquare } from '../types/mapSquare'
-
-enum MovementActions {
-    top,
-    north,
-    bottom,
-    south,
-    left,
-    west,
-    right,
-    east,
-    out
-}
-
-enum ObtainActions {
-  take,
-  swipe,
-  steal
-}
-
-enum ObservationActions {
-  look,
-  examine,
-  check,
-  inspect
-}
-
-// enum SpeechActions {
-//   say,
-//   shout,
-//   whisper
-// }
+import { AquireActions, ManipulationActions, MovementActions, ObservationActions } from '../types/actions'
 
 export class GameController {
   map: GameMap
@@ -44,10 +15,20 @@ export class GameController {
   }
 
   actionQuery() {
-    let selectedAction = Select.getAction().toLowerCase().trim()
-    console.log(`THIS IS THE ACTION |${selectedAction}|`)
+    let inputString = Select.getAction().toLowerCase().trim()
+    let parsedInput = new Parse(inputString)
+    let selectedAction = parsedInput['action']
+    let selectedSubject = parsedInput['subject']
 
-    if (Object.values(MovementActions).includes(selectedAction)){
+    console.log(`>> THIS IS THE ACTION |${selectedAction}|`)
+
+    // TODO: Move all this into the Parse class
+    if (Object.values(AquireActions).includes(selectedAction)) {
+      console.log('Aquire Action')
+    } else if (Object.values(ManipulationActions).includes(selectedAction)) {
+      console.log('Manipulation Action')
+      this.obtainAction(selectedAction)
+    } else if (Object.values(MovementActions).includes(selectedAction)){
       console.log('Movement Action')
       if(selectedAction === 'out') {
         this.setTile(<MapSquare | MapOct> this.currentTile.getOut())
@@ -77,12 +58,9 @@ export class GameController {
         this.setTile(<MapSquare | MapOct> this.currentTile.getBottomRight())
       }
       this.enterTile()
-    } else if (Object.values(ObtainActions).includes(selectedAction)) {
-      console.log('Obtain Action')
-      this.obtainAction(selectedAction)
     } else if (Object.values(ObservationActions).includes(selectedAction)) {
       console.log('Observation Action')
-      this.observeAction(selectedAction)
+      this.observeAction(selectedAction, selectedSubject)
     } else if (selectedAction === "exit") {
       process.exit(0)
     } else {
@@ -111,13 +89,15 @@ export class GameController {
     this.actionQuery()
   }
 
-  manilulationAction(action: string) {
+  manipulateAction(action: string) {
     console.log('Moved/Enabled Action')
     this.actionQuery()
   }
 
-  observeAction(action: string) {
-    console.log('Moved/Enabled Action')
+  observeAction(action: string, subject: string) {
+    console.log('Observe Action -> Subject')
+    console.log(`${action} -> ${subject}`)
+    // this.currentTile.getTextItemDescription('fishingPole')
     this.actionQuery()
   }
 }

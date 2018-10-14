@@ -7,7 +7,7 @@
     "cottage": {
       "name": "Cottage",
       "description": "You are standing in a small cottage.",
-      "items": [ "Fishing Pole" ],
+      "items": [ "fishingPole" ],
       "value": 1,
       "exits": {
         "right": "gardenPath"
@@ -19,21 +19,23 @@
     "gardenPath": {
       "name": "Lush Garden Path",
       "description": "You are standing on a lush garden path. There is a cottage here.",
-      "items": [ "Rose Bush" ],
+      "items": [ "roseBush" ],
       "value": 1,
       "exits": {
         "left": "cottage",
-        "bottom": "fishingPond"
+        "bottom": "fishingPond",
+        "top": "windingPath"
       },
       "exitAlias": {
-        "left": "West (into the cottage)",
-        "bottom": "South"
+        "left": "In (into the cottage)",
+        "bottom": "South",
+        "top": "North"
       }
     },
     "fishingPond": {
       "name": "Fishing Pond",
       "description": "You are at the edge of a small fishing pond.",
-      "items": [ "Fish" ],
+      "items": [ "fish" ],
       "value": 1,
       "exits": {
         "top": "gardenPath"
@@ -41,13 +43,30 @@
       "exitAlias": {
         "top": "North"
       }
+    },
+    "windingPath": {
+      "name": "Winding Path",
+      "description": "You are walking along a winding path.",
+      "items": [ "tallTree" ],
+      "value": 1,
+      "exits": {
+        "bottom": "gardenPath",
+        "right": "drawbridge",
+        "up": "treeTop"
+      },
+      "exitAlias": {
+        "bottom": "South",
+        "right": "East",
+        "up": "Up"
+      }
     }
   },
   "items": {
-    "fishingRod": {
+    "fishingPole": {
       "name": "Fishing Pole",
       "value": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "It is a simple fishing pole."
     },
     "roseBush": {
       "name": "Rose Bush",
@@ -56,6 +75,11 @@
     },
     "fish": {
       "name": "Fish",
+      "value": 1,
+      "quantity": 1
+    },
+    "tallTree": {
+      "name": "Tall Tree",
       "value": 1,
       "quantity": 1
     }
