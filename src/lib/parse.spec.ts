@@ -16,5 +16,5 @@ test('Command 1', t => {
 })
 
 test('Command 2', t => {
-  t.deepEqual(new Parse(command2), {"action": "north"})
+  t.deepEqual(new Parse(command2), {"action": "go", "subject": "north"})
 })

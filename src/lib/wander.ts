@@ -1,4 +1,5 @@
 import { Game } from '../types/game'
+import { Items } from './items'
 import { Choice } from '../types/choice'
 import { Select } from './select'
 import { GameController } from './gameController'
@@ -18,7 +19,8 @@ export class Wander {
     console.log(selection)
     let selectedGame: Game = <Game> this.games.get(selection)
     let gameMap = new GameMap(selectedGame)
-    new GameController(gameMap)
+    let gameItems = new Items(selectedGame.items)
+    new GameController(gameMap, gameItems)
   }
 
   private fetchGames () {

@@ -1,23 +1,28 @@
 import { GameMap } from './gameMap'
+import { Items } from './items'
 import { Select } from './select'
 import { Parse } from './parse'
 import { MapOct } from '../types/mapOct'
 import { MapSquare } from '../types/mapSquare'
 import { AquireActions, ManipulationActions, MovementActions, ObservationActions } from '../types/actions'
 
+const chalk = require('chalk')
+
 export class GameController {
+  items: Items
   map: GameMap
   currentTile: MapSquare | MapOct
-  constructor(map: GameMap) {
+  constructor(map: GameMap, items: Items) {
     this.map = map
+    this.items = items
     this.currentTile = this.map.startTile
     this.enterTile()
   }
 
   actionQuery() {
-    let inputString = Select.getAction().toLowerCase().trim()
+    let inputString = Select.getAction().trim()
     let parsedInput = new Parse(inputString)
-    let selectedAction = parsedInput['action']
+    let selectedAction = parsedInput['action'].toLowerCase()
     let selectedSubject = parsedInput['subject']
 
     console.log(`>> THIS IS THE ACTION |${selectedAction}|`)
@@ -79,7 +84,7 @@ export class GameController {
 
   enterTile() {
     console.log()
-    this.currentTile.printFullDescription()
+    this.printFullDescription()
     this.currentTile.printExits()
     this.actionQuery()
   }
@@ -95,9 +100,19 @@ export class GameController {
   }
 
   observeAction(action: string, subject: string) {
-    console.log('Observe Action -> Subject')
-    console.log(`${action} -> ${subject}`)
-    // this.currentTile.getTextItemDescription('fishingPole')
+    console.log(this.items.describe(this.currentTile, subject))
     this.actionQuery()
+  }
+
+  private printFullDescription() {
+    console.log(this.currentTile.description + " " + this.getTextItemList())
+  }
+
+  private getTextItemList() {
+    let items = ""
+    this.currentTile.items.forEach((item)=>{
+      items += `There is a ${chalk.underline.bold(this.items.getName(item))} here. `
+    })
+    return items
   }
 }

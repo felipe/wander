@@ -1,5 +1,5 @@
 export class Parse {
-  constructor(command: string) {
+  constructor (command: string) {
     let response: {[k: string]: string} = {};
 
     // We're going to expect just a one-word action for now.
@@ -14,10 +14,4 @@ export class Parse {
 
     return response
   }
-
-  // camelize(string: string) {
-  //   return string.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {
-  //     return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-  //   }).replace(/\s+/g, '');
-  // }
 }
