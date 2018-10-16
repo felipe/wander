@@ -1,13 +1,11 @@
+import { User } from '../types/user'
 import { Item } from '../types/item'
 import { Tile } from '../types/tile'
 
 export class Items {
   _items: Map<string, Item>
-  inventory: Map<string, Item>
-
   constructor(items: {}) {
     this._items = this.loadItems(items)
-    this.inventory = new Map<string, Item>()
   }
 
   private loadItems(rawItems: {}): Map<string, Item> {
@@ -29,9 +27,13 @@ export class Items {
     return response
   }
 
+  public getItem(itemName: string) {
+    return this._items.get(this.getItemId(itemName))
+  }
+
   public describe(location: Tile, itemName: string) {
     let response: string
-    let formattedItemName = this.camelize(itemName)
+    let formattedItemName = this.getItemId(itemName)
     let item = (this._items.get(formattedItemName))
     if (item && this.validate(location, item, formattedItemName)) {
       response = item.getDescription()
@@ -46,8 +48,12 @@ export class Items {
     return (item && location.items.includes(formattedItemName) && !item.isDestroyed())
   }
 
-  private camelize (string: string): string {
-    return string.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {
+  public getItemId (subject: string) {
+    return this.camelize(subject)
+  }
+
+  private camelize (phrase: string): string {
+    return phrase.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {
       return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
     }).replace(/\s+/g, '');
   }

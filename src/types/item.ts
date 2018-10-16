@@ -2,7 +2,6 @@ export interface Item {
   _id: string
   _name: string
   _description: string
-
   _destroyed: boolean
 }
 
@@ -18,11 +17,19 @@ export class Item implements Item {
     return this._destroyed
   }
 
+  public getId() {
+    return this._id
+  }
+
   public getName() {
     return this._name
   }
 
   public getDescription() {
     return this._description
+  }
+
+  private destroy() {
+    this._destroyed = true
   }
 }

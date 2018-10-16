@@ -1,5 +1,6 @@
 import { GameMap } from './gameMap'
 import { Items } from './items'
+import { User } from '../types/user'
 import { Select } from './select'
 import { Parse } from './parse'
 import { MapOct } from '../types/mapOct'
@@ -9,12 +10,14 @@ import { AquireActions, ManipulationActions, MovementActions, ObservationActions
 const chalk = require('chalk')
 
 export class GameController {
+  user: User
   items: Items
   map: GameMap
   currentTile: MapSquare | MapOct
   constructor(map: GameMap, items: Items) {
     this.map = map
     this.items = items
+    this.user = new User('clu')
     this.currentTile = this.map.startTile
     this.enterTile()
   }
@@ -29,10 +32,9 @@ export class GameController {
 
     // TODO: Move all this into the Parse class
     if (Object.values(AquireActions).includes(selectedAction)) {
-      console.log('Aquire Action')
+      this.aquireAction(selectedAction, selectedSubject)
     } else if (Object.values(ManipulationActions).includes(selectedAction)) {
-      console.log('Manipulation Action')
-      this.obtainAction(selectedAction)
+      this.manipulateAction(selectedAction)
     } else if (Object.values(MovementActions).includes(selectedAction)){
       console.log('Movement Action')
       if(selectedAction === 'out') {
@@ -89,8 +91,13 @@ export class GameController {
     this.actionQuery()
   }
 
-  obtainAction(action: string) {
-    console.log('Took action')
+  aquireAction(action: string, subject: string) {
+    console.log('Aquire action')
+    let item = this.items.getItem(subject)
+    if(item) {
+      this.user.addToInventory(item)
+    }
+    console.log(this.user.listInventory())
     this.actionQuery()
   }
 
