@@ -1,6 +1,10 @@
+import * as Response from './response'
+
 export class Parse {
   constructor (command: string) {
     let response: {[k: string]: string} = {};
+
+    Response.info('input', command)
 
     // We're going to expect just a one-word action for now.
     let i = command.indexOf(' ');

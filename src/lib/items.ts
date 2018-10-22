@@ -1,4 +1,4 @@
-import { User } from '../types/user'
+// import { User } from '../types/user'
 import { Item } from '../types/item'
 import { Tile } from '../types/tile'
 

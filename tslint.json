@@ -6,18 +6,19 @@
     "no-var-keyword": true,
     "no-parameter-reassignment": true,
     "typedef": [true, "call-signature"],
-    "readonly-keyword": true,
-    "readonly-array": true,
-    "no-let": true,
-    "no-object-mutation": true,
     "no-delete": true,
     "no-method-signature": true,
-    "no-this": true,
-    "no-class": true,
     "no-mixed-interface": true,
     "no-expression-statement": [
-      true,
-      { "ignore-prefix": ["console.", "process.exit"] }
+      false,
+      { "ignore-prefix": [
+                          "console.",
+                          "process.exit",
+                          ".get",
+                          ".set",
+                          "t.",
+                          "this."
+                         ] }
     ],
     "no-if-statement": true
   }

@@ -29,7 +29,7 @@ export class Item implements Item {
     return this._description
   }
 
-  private destroy() {
+  public destroy() {
     this._destroyed = true
   }
 }

@@ -4,6 +4,7 @@ import { Choice } from '../types/choice'
 import { Select } from './select'
 import { GameController } from './gameController'
 import { GameMap } from './gameMap'
+import * as Response from './response'
 
 export class Wander {
 
@@ -16,7 +17,7 @@ export class Wander {
 
   public start () {
     let selection = Select.builder('What Game?', this.options)
-    console.log(selection)
+    Response.console(selection)
     let selectedGame: Game = <Game> this.games.get(selection)
     let gameMap = new GameMap(selectedGame)
     let gameItems = new Items(selectedGame.items)

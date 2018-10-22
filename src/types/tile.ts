@@ -35,16 +35,16 @@ export  class Tile implements Tile {
       this.items = items
     }
 
-    public printFullDescription() {
-      console.log(this.getTextFullDescription())
+    public getFullDescription(): string {
+      return this.getTextFullDescription()
     }
 
-    public printExits() {
+    public getExits(): string {
       let exitsText = this.getTextExitList()
       if(exitsText.length === 0) {
-        console.log(`There are no exits.`)
+        return `There are no exits.`
       } else {
-        console.log(`Exits are: \r\n ${exitsText}`)
+        return `Exits are: \r\n ${exitsText}`
       }
     }
 
@@ -89,80 +89,78 @@ export  class Tile implements Tile {
           return this.right
         } else if(this.bottom !== null) {
           return this.bottom
-        } else {
-          console.log('This is not setup')
         }
-      } else {
-        console.log('Either no exits, or more than one exit. Out is not enough description.')
       }
+      // console.log('Either no exits, or more than one exit. Out is not enough description.')
+
       return null
     }
 
-    private setTop(tile: MapSquare | MapOct) {
-      this.top = tile
-    }
-
-    public getTop() {
+    public getTop(): MapSquare | MapOct | null {
       return this.top
     }
 
-    private setLeft(tile: MapSquare | MapOct) {
-      this.left = tile
-    }
-
-    public getLeft() {
+    public getLeft(): MapSquare | MapOct | null {
       return this.left
     }
 
-    private setRight(tile: MapSquare | MapOct) {
-      this.right = tile
-    }
-
-    public getRight() {
+    public getRight(): MapSquare | MapOct | null {
       return this.right
     }
 
-    private setBottom(tile: MapSquare | MapOct) {
-      this.bottom = tile
-    }
-
-    public getBottom() {
+    public getBottom(): MapSquare | MapOct | null {
       return this.bottom
     }
 
-    private setTopLeft(tile: MapSquare | MapOct) {
-      this.topLeft = tile
-    }
-
-    public getTopLeft() {
+    public getTopLeft(): MapSquare | MapOct | null {
       return this.topLeft
     }
 
-    private setTopRight(tile: MapSquare | MapOct) {
-      this.topRight = tile
-    }
-
-    public getTopRight() {
+    public getTopRight(): MapSquare | MapOct | null {
       return this.topRight
     }
 
-    private setBottomLeft(tile: MapSquare | MapOct) {
-      this.bottomLeft = tile
-    }
-
-    public getBottomLeft() {
+    public getBottomLeft(): MapSquare | MapOct | null {
       return this.bottomLeft
     }
 
-    private setBottomRight(tile: MapSquare | MapOct) {
-      this.bottomRight = tile
-    }
-
-    public getBottomRight() {
+    public getBottomRight(): MapSquare | MapOct | null {
       return this.bottomRight
     }
 
-    private getTextExitList() {
+    private setTop(tile: MapSquare | MapOct): void {
+      this.top = tile
+    }
+
+    private setLeft(tile: MapSquare | MapOct): void {
+      this.left = tile
+    }
+
+    private setRight(tile: MapSquare | MapOct): void {
+      this.right = tile
+    }
+
+    private setBottom(tile: MapSquare | MapOct): void {
+      this.bottom = tile
+    }
+
+    private setTopLeft(tile: MapSquare | MapOct): void {
+      this.topLeft = tile
+    }
+
+    private setTopRight(tile: MapSquare | MapOct): void {
+      this.topRight = tile
+    }
+
+    private setBottomLeft(tile: MapSquare | MapOct): void {
+      this.bottomLeft = tile
+    }
+
+    private setBottomRight(tile: MapSquare | MapOct): void {
+      this.bottomRight = tile
+    }
+
+    private getTextExitList(): string {
       let exits = ""
       this.exits.forEach((exit, index)=>{
         exits += `${chalk.bold((this.exitAlias.get(exit))? this.exitAlias.get(exit) : exit)}`
@@ -171,11 +169,11 @@ export  class Tile implements Tile {
       return exits
     }
 
-    private getTextFullDescription() {
+    private getTextFullDescription(): string {
       return this.description + " " + this.getTextItemList()
     }
 
-    private getTextItemList() {
+    private getTextItemList(): string {
       let items = ""
       this.items.forEach((item)=>{
         items += `There is a ${chalk.underline.bold(item)} here. `

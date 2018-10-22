@@ -6,6 +6,7 @@ import { Parse } from './parse'
 import { MapOct } from '../types/mapOct'
 import { MapSquare } from '../types/mapSquare'
 import { AquireActions, ManipulationActions, MovementActions, ObservationActions } from '../types/actions'
+import * as Response from './response'
 
 const chalk = require('chalk')
 
@@ -28,7 +29,7 @@ export class GameController {
     let selectedAction = parsedInput['action'].toLowerCase()
     let selectedSubject = parsedInput['subject']
 
-    console.log(`>> THIS IS THE ACTION |${selectedAction}|`)
+    Response.info('intent', selectedAction)
 
     // TODO: Move all this into the Parse class
     if (Object.values(AquireActions).includes(selectedAction)) {
@@ -36,7 +37,7 @@ export class GameController {
     } else if (Object.values(ManipulationActions).includes(selectedAction)) {
       this.manipulateAction(selectedAction)
     } else if (Object.values(MovementActions).includes(selectedAction)){
-      console.log('Movement Action')
+      Response.console('Movement Action')
       if(selectedAction === 'out') {
         this.setTile(<MapSquare | MapOct> this.currentTile.getOut())
       }
@@ -66,12 +67,12 @@ export class GameController {
       }
       this.enterTile()
     } else if (Object.values(ObservationActions).includes(selectedAction)) {
-      console.log('Observation Action')
+      Response.console('Observation Action')
       this.observeAction(selectedAction, selectedSubject)
     } else if (selectedAction === "exit") {
       process.exit(0)
     } else {
-      console.log('Invalid Action')
+      Response.console('Invalid Action')
       this.actionQuery()
     }
   }
@@ -80,39 +81,39 @@ export class GameController {
     if(tile != null) {
       this.currentTile = tile
     } else {
-      console.log("Invalid Direction")
+      Response.console("Invalid Direction")
     }
   }
 
   enterTile() {
-    console.log()
-    this.printFullDescription()
-    this.currentTile.printExits()
+    Response.console("")
+    Response.console(this.getFullDescription())
+    Response.console(this.currentTile.getExits())
     this.actionQuery()
   }
 
   aquireAction(action: string, subject: string) {
-    console.log('Aquire action')
+    Response.console('Aquire action')
     let item = this.items.getItem(subject)
     if(item) {
-      this.user.addToInventory(item)
+      Response.console(this.user.addToInventory(item))
     }
-    console.log(this.user.listInventory())
+    Response.console(this.user.listInventory())
     this.actionQuery()
   }
 
   manipulateAction(action: string) {
-    console.log('Moved/Enabled Action')
+    Response.console('Moved/Enabled Action')
     this.actionQuery()
   }
 
   observeAction(action: string, subject: string) {
-    console.log(this.items.describe(this.currentTile, subject))
+    Response.console(this.items.describe(this.currentTile, subject))
     this.actionQuery()
   }
 
-  private printFullDescription() {
-    console.log(this.currentTile.description + " " + this.getTextItemList())
+  private getFullDescription() {
+    return this.currentTile.description + " " + this.getTextItemList()
   }
 
   private getTextItemList() {
