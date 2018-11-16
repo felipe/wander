@@ -5,7 +5,8 @@
     "no-implicit-dependencies": [true, "dev"],
     "no-var-keyword": true,
     "no-parameter-reassignment": true,
-    "typedef": [true, "call-signature"],
+
+    "typedef": [false, "call-signature"],  // TODO: Enable this.
     "no-delete": true,
     "no-method-signature": true,
     "no-mixed-interface": true,
@@ -20,6 +21,6 @@
                           "this."
                          ] }
     ],
-    "no-if-statement": true
+    "no-if-statement": false  // TODO: Enable this.
   }
 }

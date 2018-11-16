@@ -1,2 +1,1 @@
-export enum ManipulationActions {
-}
+export enum ManipulationActions {}

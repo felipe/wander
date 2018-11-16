@@ -1,8 +1,9 @@
-import { Item } from '../types/item'
+import { Item } from '../types/item';
 
 export class Users {
-  inventory: Map<string, Item> =  new Map<string, Item>()
+  public inventory: Map<string, Item> = new Map<string, Item>();
 
   constructor() {
+    // silence
   }
 }

@@ -1,33 +1,32 @@
-import { Game } from '../types/game'
-import { Items } from './items'
-import { Choice } from '../types/choice'
-import { Select } from './select'
-import { GameController } from './gameController'
-import { GameMap } from './gameMap'
-import * as Response from './response'
+import { Choice } from '../types/choice';
+import { Game } from '../types/game';
+import { GameController } from './gameController';
+import { GameMap } from './gameMap';
+import { Items } from './items';
+import * as Response from './response';
+import { Select } from './select';
 
 export class Wander {
+  private games: Map<string, Game> = new Map<string, Game>();
+  private options: Choice[] = [];
 
-  private games: Map<string, Game> = new Map<string, Game>()
-  private options:Choice[] = []
-
-  constructor () {
-    this.fetchGames()
+  constructor() {
+    this.fetchGames();
   }
 
-  public start () {
-    let selection = Select.builder('What Game?', this.options)
-    Response.console(selection)
-    let selectedGame: Game = <Game> this.games.get(selection)
-    let gameMap = new GameMap(selectedGame)
-    let gameItems = new Items(selectedGame.items)
-    new GameController(gameMap, gameItems)
+  public start() {
+    const selection = Select.builder('What Game?', this.options);
+    Response.console(selection);
+    const selectedGame: Game = this.games.get(selection) as Game;
+    const gameMap = new GameMap(selectedGame);
+    const gameItems = new Items(selectedGame.items);
+    return new GameController(gameMap, gameItems);
   }
 
-  private fetchGames () {
-    let gameName = "action_castle"
-    let game: Game = require(`../../../games/${gameName}.json`)
-    this.games.set(gameName, game)
-    this.options = Choice.build([game.title])
+  private fetchGames() {
+    const gameName = 'action_castle';
+    const game: Game = require(`../../../games/${gameName}.json`);
+    this.games.set(gameName, game);
+    this.options = Choice.build([game.title]);
   }
 }

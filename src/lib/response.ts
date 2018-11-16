@@ -1,4 +1,4 @@
-import * as  Winston from 'winston'
+import * as Winston from 'winston';
 
 const transport = new Winston.transports.Console();
 const logger = Winston.createLogger({
@@ -10,26 +10,26 @@ export function console(message: string): void {
 }
 
 export function info(message: string, data: any = null): void {
-  log('info', (data === null ? message : `{${message}: "${data}"}`))
+  log('info', data === null ? message : `{${message}: "${data}"}`);
 }
 
 export function error(message: string, data: any = null): void {
-  log('error', (data === null ? message : `{${message}: "${data}"}`))
+  log('error', data === null ? message : `{${message}: "${data}"}`);
 }
 
 export function log(level: string, message: string): void {
-  switch(level) {
+  switch (level) {
     case 'output':
-      console(message)
-      break
+      console(message);
+      break;
     case 'error':
-      logger.error(message)
-      break
+      logger.error(message);
+      break;
     case 'info':
-      logger.info(message)
-      break
+      logger.info(message);
+      break;
     default:
       // logger.log(message)
-      break
+      break;
   }
 }

@@ -1,14 +1,14 @@
 export interface Meta {
   // Description
-  readonly name: string
-  readonly description: string
+  readonly name: string;
+  readonly description: string;
 
   // Value
-  readonly value: number
+  readonly value: number;
 
   // Items
-  readonly items: string[]
+  readonly items: string[];
 
   // Location
-  readonly exits: string[]
+  readonly exits: string[];
 }
