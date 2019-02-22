@@ -30,5 +30,11 @@ test('Choice3:key', (t: any) => {
 });
 
 test('Choice3:value', (t: any) => {
-  return t.deepEqual(choice3.value, 'value');
+  t.deepEqual(choice3.value, 'value');
+});
+
+test('Choice:build', (t: any) => {
+  const items = ['x', 'y', 'z'];
+  const choices = Choice.build(items);
+  t.deepEqual(choices, [new Choice('x'), new Choice('y'), new Choice('z')]);
 });

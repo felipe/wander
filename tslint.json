@@ -8,8 +8,8 @@
 
     "typedef": [false, "call-signature"],  // TODO: Enable this.
     "no-delete": true,
-    "no-method-signature": true,
-    "no-mixed-interface": true,
+    "no-method-signature": false,
+    "no-mixed-interface": false,
     "no-expression-statement": [
       false,
       { "ignore-prefix": [

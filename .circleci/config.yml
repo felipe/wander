@@ -1,48 +1,46 @@
 # https://circleci.com/docs/2.0/language-javascript/
 version: 2
 jobs:
-  "node-8":
+  'node-10':
     docker:
-      - image: circleci/node:8
-    working_directory: ~/wander
+      - image: circleci/node:10
+    working_directory: ~/typescript-starter
     steps:
       - checkout
+      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run: yarn install
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test
-      - persist_to_workspace:
-          root: "."
-          paths:
-              - src
-              - build
-              - yarn.lock
-  "node-latest":
+      - run: yarn run cov:check
+  'node-latest':
     docker:
       - image: circleci/node:latest
-    working_directory: ~/wander
+    working_directory: ~/typescript-starter
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run: yarn install
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test
+      - run: yarn run cov:check
 
 workflows:
   version: 2
   build:
     jobs:
-      - "node-8"
-      - "node-latest"
+      - 'node-10'
+      - 'node-latest'
