@@ -808,7 +808,22 @@ ava@^1.0.0-beta.3:
     unique-temp-dir "^1.0.0"
     update-notifier "^2.5.0"
 
-aws-sdk@^2.247.1, aws-sdk@^2.7.13:
+aws-sdk@^2.409.0:
+  version "2.409.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.409.0.tgz#d017060ba9e005487c68dc34a592af74d916f295"
+  integrity sha512-QV6j9zBQq/Kz8BqVOrJ03ABjMKtErXdUT1YdYEljoLQZimpzt0ZdQwJAsoZIsxxriOJgrqeZsQUklv9AFQaldQ==
+  dependencies:
+    buffer "4.9.1"
+    events "1.1.1"
+    ieee754 "1.1.8"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.3.2"
+    xml2js "0.4.19"
+
+aws-sdk@^2.7.13:
   version "2.402.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.402.0.tgz#d4bfe8f16f476e26a7da4edba79b878a1cabb0fb"
   integrity sha512-cit/4UaNMtVWwkJtxa7gSSrvMURjPpej5guas1Dhaivoz7QcIrAyoOZo49uSdTSPoGG9YtjFy/tSgdSY61BDTQ==
