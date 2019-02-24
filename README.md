@@ -10,7 +10,7 @@ A Text Adventure Service
 
 ## Usage
 
-To really use this you need a game, and there is currently not one that I hace permission to share. I am working on that.
+To really use this you need a game, `Action Castle` is not a complete game, and I will not be updating it to be a complete game because I do not own a license to it. You should, however, buy it and play it with your friends! [Memento Mori Theatrics](http://www.memento-mori.com/). I will be creating a new example game in the next few commits.
 
 To build you'd use the following:
 
