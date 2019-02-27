@@ -1,5 +1,8 @@
 export enum SupportActions {
   help,
   inventory,
-  exit
+  save,
+  load,
+  restore,
+  score
 }

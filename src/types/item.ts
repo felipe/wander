@@ -1,6 +1,7 @@
 export interface Item {
   _id: string;
   _name: string;
+  _quantity: number;
   _description: string;
   _destroyed: boolean;
 }
@@ -9,6 +10,7 @@ export class Item implements Item {
   constructor(id: string, item: any) {
     this._id = id;
     this._name = item.name;
+    this._quantity = item.quantity;
     this._description = item.description;
     this._destroyed = false;
   }
@@ -23,6 +25,10 @@ export class Item implements Item {
 
   public getName() {
     return this._name;
+  }
+
+  public getQuantity() {
+    return this._quantity;
   }
 
   public getDescription() {

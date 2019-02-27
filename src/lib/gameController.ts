@@ -79,10 +79,8 @@ export class GameController {
       Response.console('Observation Action');
       this.observeAction(selectedAction, selectedSubject);
     } else if (Object.values(SupportActions).includes(selectedAction)) {
-      Response.console('Support Action');
-      // this.supportAction(selectedAction, selectedSubject);
-      Response.console('A support action');
-    } else if (selectedAction === 'exit') {
+      this.supportAction(selectedAction);
+    } else if (selectedAction === 'exit' || selectedAction === 'quit') {
       process.exit(0);
     } else {
       Response.console('Invalid Action');
@@ -111,7 +109,6 @@ export class GameController {
     if (item) {
       Response.console(this.user.addToInventory(item));
     }
-    Response.console(this.user.listInventory());
     this.actionQuery();
   }
 
@@ -122,6 +119,24 @@ export class GameController {
 
   public observeAction(action: string, subject: string) {
     Response.console(this.items.describe(this.currentTile, subject));
+    this.actionQuery();
+  }
+
+  public supportAction(action: string) {
+    switch (action) {
+      case 'help':
+        Response.console('Help, Inventory, Save, Load, Restore, Score, Quit');
+        break;
+      case 'inventory':
+        const inventory = this.user.listInventory();
+        Response.console(
+          inventory === '' ? 'Your Inventory is empty.' : inventory
+        );
+        break;
+      default:
+        Response.console(action + ' Action');
+    }
+
     this.actionQuery();
   }
 

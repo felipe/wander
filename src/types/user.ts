@@ -28,6 +28,11 @@ export class User {
   }
 
   public listInventory(): string {
-    return Array.from(this.inventory.keys()).join(', ');
+    let list = '';
+    this.inventory.forEach(item => {
+      const nl = list !== '' ? '\r\n' : '';
+      list = list + nl + `${item.getQuantity()}x ${item.getName()}`;
+    });
+    return list;
   }
 }
