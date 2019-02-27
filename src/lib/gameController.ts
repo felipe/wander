@@ -2,7 +2,8 @@ import {
   AquireActions,
   ManipulationActions,
   MovementActions,
-  ObservationActions
+  ObservationActions,
+  SupportActions
 } from '../types/actions';
 import { MapOct } from '../types/mapOct';
 import { MapSquare } from '../types/mapSquare';
@@ -77,6 +78,10 @@ export class GameController {
     } else if (Object.values(ObservationActions).includes(selectedAction)) {
       Response.console('Observation Action');
       this.observeAction(selectedAction, selectedSubject);
+    } else if (Object.values(SupportActions).includes(selectedAction)) {
+      Response.console('Support Action');
+      // this.supportAction(selectedAction, selectedSubject);
+      Response.console('A support action');
     } else if (selectedAction === 'exit') {
       process.exit(0);
     } else {
