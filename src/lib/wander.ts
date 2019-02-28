@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { Choice } from '../types/choice';
 import { Game } from '../types/game';
 import { GameController } from './gameController';
@@ -6,27 +7,42 @@ import { Items } from './items';
 import * as Response from './response';
 import { Select } from './select';
 
+const gamesPath = './games/';
+
 export class Wander {
   private games: Map<string, Game> = new Map<string, Game>();
   private options: Choice[] = [];
 
-  constructor() {
-    this.fetchGames();
-  }
+  public async start() {
+    await this.fetchGames();
 
-  public start() {
     const selection = Select.builder('What Game?', this.options);
-    Response.console(selection);
     const selectedGame: Game = this.games.get(selection) as Game;
     const gameMap = new GameMap(selectedGame);
     const gameItems = new Items(selectedGame.items);
+
+    if (selectedGame.banner) {
+      selectedGame.banner.forEach(row => {
+        Response.console(row);
+      });
+    } else {
+      Response.console(selectedGame.title);
+    }
+
     return new GameController(gameMap, gameItems);
   }
 
-  private fetchGames() {
-    const gameName = 'action_castle';
-    const game: Game = require(`../../../games/${gameName}.json`);
-    this.games.set(gameName, game);
-    this.options = Choice.build([game.title]);
+  private async fetchGames() {
+    await new Promise((resolve, reject) => {
+      fs.readdir(gamesPath, (err, gameFile) => {
+        if (err) {
+          throw err;
+        }
+        const game: Game = require('../../.' + gamesPath + gameFile);
+        this.options.push(new Choice(game.title, game.node));
+        this.games.set(game.node, game);
+        resolve();
+      });
+    });
   }
 }
