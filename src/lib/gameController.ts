@@ -147,9 +147,11 @@ export class GameController {
   private getTextItemList() {
     let items = '';
     this.currentTile.items.forEach(item => {
-      items += `There is a ${chalk.underline.bold(
-        this.items.getName(item)
-      )} here. `;
+      if (!this.items.isHidden(item)) {
+        items += `There is a ${chalk.underline.bold(
+          this.items.getName(item)
+        )} here. `;
+      }
     });
     return items;
   }

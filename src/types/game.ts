@@ -5,6 +5,7 @@ export interface Game {
   copyright: string;
   startTile: string;
   tileType: string;
+  actions: {};
   tiles: {};
   items: {};
 }

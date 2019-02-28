@@ -1,9 +1,11 @@
 export interface Item {
   _id: string;
+  _hidden: boolean;
   _name: string;
   _quantity: number;
   _description: string;
   _destroyed: boolean;
+  _value: number;
 }
 
 export class Item implements Item {
@@ -13,10 +15,16 @@ export class Item implements Item {
     this._quantity = item.quantity;
     this._description = item.description;
     this._destroyed = false;
+    this._hidden = item.hidden;
+    this._value = item.value;
   }
 
   public isDestroyed() {
     return this._destroyed;
+  }
+
+  public isHidden() {
+    return this._hidden;
   }
 
   public getId() {
