@@ -58,7 +58,7 @@
     "@types/readline-sync": "^1.4.3",
     "aws-sdk": "^2.409.0",
     "axios": "^0.18.0",
-    "chalk": "^2.4.1",
+    "chalk": "^3.0.0",
     "readline-sync": "^1.4.9",
     "serverless-slack": "^1.0.26",
     "sha.js": "^2.4.10",
