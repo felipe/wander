@@ -72,7 +72,7 @@
     "gh-pages": "^2.0.1",
     "npm-run-all": "^4.1.2",
     "npm-scripts-info": "^0.3.6",
-    "nyc": "^13.1.0",
+    "nyc": "^14.0.0",
     "opn-cli": "^4.0.0",
     "prettier": "^1.10.2",
     "standard-version": "^5.0.0",
