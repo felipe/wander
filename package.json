@@ -57,7 +57,7 @@
     "@slack/client": "^5.0.0",
     "@types/readline-sync": "^1.4.3",
     "aws-sdk": "^2.409.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.2",
     "chalk": "^3.0.0",
     "readline-sync": "^1.4.9",
     "serverless-slack": "^1.0.26",
@@ -109,5 +109,8 @@
     "exclude": [
       "**/*.spec.js"
     ]
+  },
+  "resolutions": {
+    "serverless-slack/axios": "^0.19.2"
   }
 }
