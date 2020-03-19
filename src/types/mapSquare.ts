@@ -29,6 +29,7 @@ export interface MapSquare extends Tile {
   getBottomLeft(): MapSquare | MapOct | null;
   getLeft(): MapSquare | MapOct | null;
   getTopLeft(): MapSquare | MapOct | null;
+  getIn(): MapSquare | MapOct | null;
   getOut(): MapSquare | MapOct | null;
 
   addExit(direction: string, tile: MapSquare | MapOct, alias?: string): void;

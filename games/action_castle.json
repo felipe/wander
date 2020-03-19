@@ -1,5 +1,6 @@
 {
   "title": "Action Castle",
+  "node": "action_castle",
   "copyright": "Memento Mori Games",
   "startTile": "cottage",
   "tileType": "square",

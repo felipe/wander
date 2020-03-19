@@ -2,7 +2,8 @@ import {
   AquireActions,
   ManipulationActions,
   MovementActions,
-  ObservationActions
+  ObservationActions,
+  SupportActions
 } from '../types/actions';
 import { MapOct } from '../types/mapOct';
 import { MapSquare } from '../types/mapSquare';
@@ -43,6 +44,9 @@ export class GameController {
       this.manipulateAction(selectedAction);
     } else if (Object.values(MovementActions).includes(selectedAction)) {
       Response.console('Movement Action');
+      if (selectedAction === 'in') {
+        this.setTile(this.currentTile.getIn() as MapSquare | MapOct);
+      }
       if (selectedAction === 'out') {
         this.setTile(this.currentTile.getOut() as MapSquare | MapOct);
       }
@@ -77,7 +81,9 @@ export class GameController {
     } else if (Object.values(ObservationActions).includes(selectedAction)) {
       Response.console('Observation Action');
       this.observeAction(selectedAction, selectedSubject);
-    } else if (selectedAction === 'exit') {
+    } else if (Object.values(SupportActions).includes(selectedAction)) {
+      this.supportAction(selectedAction);
+    } else if (selectedAction === 'exit' || selectedAction === 'quit') {
       process.exit(0);
     } else {
       Response.console('Invalid Action');
@@ -106,7 +112,6 @@ export class GameController {
     if (item) {
       Response.console(this.user.addToInventory(item));
     }
-    Response.console(this.user.listInventory());
     this.actionQuery();
   }
 
@@ -120,6 +125,24 @@ export class GameController {
     this.actionQuery();
   }
 
+  public supportAction(action: string) {
+    switch (action) {
+      case 'help':
+        Response.console('Help, Inventory, Save, Load, Restore, Score, Quit');
+        break;
+      case 'inventory':
+        const inventory = this.user.listInventory();
+        Response.console(
+          inventory === '' ? 'Your Inventory is empty.' : inventory
+        );
+        break;
+      default:
+        Response.console(action + ' Action');
+    }
+
+    this.actionQuery();
+  }
+
   private getFullDescription() {
     return this.currentTile.description + ' ' + this.getTextItemList();
   }
@@ -127,9 +150,11 @@ export class GameController {
   private getTextItemList() {
     let items = '';
     this.currentTile.items.forEach(item => {
-      items += `There is a ${chalk.underline.bold(
-        this.items.getName(item)
-      )} here. `;
+      if (!this.items.isHidden(item)) {
+        items += `There is a ${chalk.underline.bold(
+          this.items.getName(item)
+        )} here. `;
+      }
     });
     return items;
   }

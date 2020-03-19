@@ -43,6 +43,29 @@ export class Tile implements Tile {
     return this.getTextFullDescription();
   }
 
+  public getExit(direction: string): MapSquare | MapOct | null {
+    switch (direction) {
+      case 'top':
+        return this.getTop();
+      case 'left':
+        return this.getLeft();
+      case 'right':
+        return this.getRight();
+      case 'bottom':
+        return this.getBottom();
+      case 'topLeft':
+        return this.getTopLeft();
+      case 'topRight':
+        return this.getTopRight();
+      case 'bottomLeft':
+        return this.getBottomLeft();
+      case 'bottomRight':
+        return this.getBottomRight();
+    }
+
+    return null;
+  }
+
   public getExits(): string {
     const exitsText = this.getTextExitList();
     if (exitsText.length === 0) {
@@ -83,6 +106,17 @@ export class Tile implements Tile {
       this.exitAlias.set(direction, alias);
     }
     this.exits.push(direction);
+  }
+
+  public getIn(): MapSquare | MapOct | null {
+    const inside: string[] = [];
+    this.exitAlias.forEach((alias, tile) => {
+      if (alias.startsWith('In ')) {
+        inside.push(tile);
+      }
+    });
+
+    return inside.length === 1 ? this.getExit(inside[0]) : null;
   }
 
   public getOut(): MapSquare | MapOct | null {

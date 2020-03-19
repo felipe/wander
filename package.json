@@ -25,7 +25,7 @@
     "cov": "run-s build test:unit cov:html && opn coverage/index.html",
     "cov:html": "nyc report --reporter=html",
     "cov:send": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "cov:check": "nyc report && nyc check-coverage --lines 60 --functions 49 --branches 30",
+    "cov:check": "nyc report && nyc check-coverage",
     "doc": "run-s doc:html && opn build/docs/index.html",
     "doc:html": "typedoc src/ --target ES6 --mode file --out build/docs",
     "doc:json": "typedoc src/ --target ES6 --mode file --json build/docs/typedoc.json",
@@ -55,12 +55,14 @@
   },
   "dependencies": {
     "@types/readline-sync": "^1.4.3",
+    "@types/uuid": "^7.0.2",
     "aws-sdk": "^2.627.0",
     "axios": "^0.19.2",
     "chalk": "^3.0.0",
     "readline-sync": "^1.4.9",
     "serverless-slack": "^1.0.26",
     "sha.js": "^2.4.10",
+    "uuid": "^7.0.2",
     "winston": "^3.1.0"
   },
   "devDependencies": {
@@ -101,9 +103,16 @@
     "singleQuote": true
   },
   "nyc": {
+    "extension": [
+      ".ts"
+    ],
     "exclude": [
       "**/*.spec.js"
-    ]
+    ],
+    "check-coverage": true,
+    "lines": 89,
+    "functions": 90,
+    "branches": 55
   },
   "resolutions": {
     "serverless-slack/axios": "^0.19.2",

@@ -1,21 +1,23 @@
 import { Item } from './item';
 
 export class User {
-  private readonly id: string; // TODO: Should be UUID
+  private readonly id: string;
   private readonly name: string;
   private inventory: Map<string, Item> = new Map<string, Item>();
 
   constructor(id: string) {
-    this.id = id; // TODO: Split once UUIDs are set
-    this.name = id; // TODO: Split once UUIDs are set
+    this.id = id;
+    this.name = id;
   }
 
   public getId(): string {
     return this.id;
   }
+
   public getName(): string {
     return this.name;
   }
+
   public addToInventory(item: Item): string {
     this.inventory.set(item.getId(), item);
     return `${item.getName()} has been added to your Inventory`;
@@ -26,6 +28,11 @@ export class User {
   }
 
   public listInventory(): string {
-    return String(this.inventory.keys());
+    let list = '';
+    this.inventory.forEach(item => {
+      const nl = list !== '' ? '\r\n' : '';
+      list = list + nl + `${item.getQuantity()}x ${item.getName()}`;
+    });
+    return list;
   }
 }

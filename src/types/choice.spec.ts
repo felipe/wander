@@ -10,7 +10,7 @@ test('Choice:object', (t: any) => {
 });
 
 test('Choice1:key', (t: any) => {
-  return t.deepEqual(choice1.name, 'Name');
+  t.deepEqual(choice1.name, 'Name');
 });
 
 test('Choice1:value', (t: any) => {
