@@ -54,6 +54,6 @@ export class Item implements Item {
   }
 
   public take() {
-    this._taken =  true;
+    this._taken = true;
   }
 }

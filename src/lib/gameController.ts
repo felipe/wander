@@ -150,7 +150,6 @@ export class GameController {
 
   private getTextItemList() {
     let items = '';
-    console.log(this.currentTile.items);
     this.currentTile.items.forEach(item => {
       if (!this.items.isHidden(item) && !this.items.wasTaken(item)) {
         items += `There is a ${chalk.underline.bold(
