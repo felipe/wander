@@ -15,7 +15,7 @@ export class Item implements Item {
     this._quantity = item.quantity;
     this._description = item.description;
     this._destroyed = false;
-    this._hidden = item.hidden;
+    this._hidden = item.hidden ? item.hidden : false;
     this._value = item.value;
   }
 
