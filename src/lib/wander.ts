@@ -43,6 +43,8 @@ export class Wander {
         this.games.set(game.node, game);
         resolve();
       });
+    }).catch(err => {
+      throw err;
     });
   }
 }

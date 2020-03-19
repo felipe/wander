@@ -1,8 +1,9 @@
 import test from 'ava';
 import { Item } from './item';
 import { User } from './user';
+import { v4 as uuidv4 } from 'uuid';
 
-const userID = 'this-should-bea-uuid';
+const userID = uuidv4();
 
 const user1 = new User(userID);
 

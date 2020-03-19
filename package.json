@@ -55,12 +55,14 @@
   },
   "dependencies": {
     "@types/readline-sync": "^1.4.3",
+    "@types/uuid": "^7.0.2",
     "aws-sdk": "^2.627.0",
     "axios": "^0.19.2",
     "chalk": "^3.0.0",
     "readline-sync": "^1.4.9",
     "serverless-slack": "^1.0.26",
     "sha.js": "^2.4.10",
+    "uuid": "^7.0.2",
     "winston": "^3.1.0"
   },
   "devDependencies": {
