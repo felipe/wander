@@ -5,6 +5,7 @@ export interface Item {
   _quantity: number;
   _description: string;
   _destroyed: boolean;
+  _taken: boolean;
   _value: number;
 }
 
@@ -16,6 +17,7 @@ export class Item implements Item {
     this._description = item.description;
     this._destroyed = false;
     this._hidden = item.hidden ? item.hidden : false;
+    this._taken = item.taken ? item.taken : false;
     this._value = item.value;
   }
 
@@ -25,6 +27,10 @@ export class Item implements Item {
 
   public isHidden() {
     return this._hidden;
+  }
+
+  public wasTaken() {
+    return this._taken;
   }
 
   public getId() {
@@ -45,5 +51,9 @@ export class Item implements Item {
 
   public destroy() {
     this._destroyed = true;
+  }
+
+  public take() {
+    this._taken =  true;
   }
 }

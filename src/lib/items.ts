@@ -13,6 +13,11 @@ export class Items {
     return item ? item.isHidden() : false;
   }
 
+  public wasTaken(itemName: string) {
+    const item = this.items.get(itemName);
+    return item ? item.wasTaken() : false;
+  }
+
   public getName(itemName: string) {
     let response = '';
     const item = this.items.get(itemName);
