@@ -8,6 +8,11 @@ export class Items {
     this.items = this.loadItems(items);
   }
 
+  public isHidden(itemName: string) {
+    const item = this.items.get(itemName);
+    return item ? item.isHidden() : false;
+  }
+
   public getName(itemName: string) {
     let response = '';
     const item = this.items.get(itemName);

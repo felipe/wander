@@ -13,9 +13,11 @@ export class User {
   public getId(): string {
     return this.id;
   }
+
   public getName(): string {
     return this.name;
   }
+
   public addToInventory(item: Item): string {
     this.inventory.set(item.getId(), item);
     return `${item.getName()} has been added to your Inventory`;
@@ -26,6 +28,11 @@ export class User {
   }
 
   public listInventory(): string {
-    return String(this.inventory.keys());
+    let list = '';
+    this.inventory.forEach(item => {
+      const nl = list !== '' ? '\r\n' : '';
+      list = list + nl + `${item.getQuantity()}x ${item.getName()}`;
+    });
+    return list;
   }
 }

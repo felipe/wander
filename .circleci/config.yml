@@ -1,5 +1,5 @@
 # https://circleci.com/docs/2.0/language-javascript/
-version: 2
+version: 2.1
 jobs:
   'node-10':
     docker:
@@ -37,9 +37,8 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test
       - run: yarn run cov:check
-
 workflows:
-  version: 2
+  version: 2.1
   build:
     jobs:
       - 'node-10'
