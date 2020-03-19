@@ -44,6 +44,9 @@ export class GameController {
       this.manipulateAction(selectedAction);
     } else if (Object.values(MovementActions).includes(selectedAction)) {
       Response.console('Movement Action');
+      if (selectedAction === 'in') {
+        this.setTile(this.currentTile.getIn() as MapSquare | MapOct);
+      }
       if (selectedAction === 'out') {
         this.setTile(this.currentTile.getOut() as MapSquare | MapOct);
       }
