@@ -111,6 +111,7 @@ export class GameController {
     const item = this.items.getItem(subject);
     if (item) {
       Response.console(this.user.addToInventory(item));
+      item.take();
     }
     this.actionQuery();
   }
@@ -150,7 +151,7 @@ export class GameController {
   private getTextItemList() {
     let items = '';
     this.currentTile.items.forEach(item => {
-      if (!this.items.isHidden(item)) {
+      if (!this.items.isHidden(item) && !this.items.wasTaken(item)) {
         items += `There is a ${chalk.underline.bold(
           this.items.getName(item)
         )} here. `;
