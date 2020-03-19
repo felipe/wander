@@ -47,9 +47,9 @@
     },
     "windingPath": {
       "name": "Winding Path",
-      "description": "You are walking along a winding path.",
-      "items": [ "tallTree" ],
+      "description": "You are walking along a winding path. There is a tall tree here.",
       "value": 1,
+      "items": [],
       "exits": {
         "bottom": "gardenPath",
         "right": "drawbridge",
@@ -60,6 +60,18 @@
         "right": "East",
         "up": "Up"
       }
+    },
+    "treeTop": {
+      "name": "Top of the Tall Tree",
+      "description": "You are the top of the tall tree.",
+      "items": [ "deadBranch" ],
+      "value": 1,
+      "exits": {
+        "down": "windingPath"
+      },
+      "exitAlias": {
+        "down": "Down"
+      }
     }
   },
   "actions": {},
@@ -68,22 +80,26 @@
       "name": "Fishing Pole",
       "value": 1,
       "quantity": 1,
-      "description": "It is a simple fishing pole."
+      "description": "It is a simple fishing pole.",
+      "durability": 1
     },
     "roseBush": {
       "name": "Rose Bush",
       "value": 1,
-      "quantity": 1
+      "quantity": 1,
+      "durability": 1
     },
     "fish": {
       "name": "Fish",
       "value": 1,
-      "quantity": 1
+      "quantity": 1,
+      "durability": 1
     },
-    "tallTree": {
-      "name": "Tall Tree",
+    "deadBranch": {
+      "name": "Stout, Dead Branch",
       "value": 1,
-      "quantity": 1
+      "quantity": 1,
+      "durability": 1
     }
   }
 }
