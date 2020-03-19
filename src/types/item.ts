@@ -3,6 +3,7 @@ export interface Item {
   _hidden: boolean;
   _name: string;
   _quantity: number;
+  _durability: number;
   _description: string;
   _destroyed: boolean;
   _taken: boolean;
@@ -14,6 +15,7 @@ export class Item implements Item {
     this._id = id;
     this._name = item.name;
     this._quantity = item.quantity;
+    this._durability = item.durability;
     this._description = item.description;
     this._destroyed = false;
     this._hidden = item.hidden ? item.hidden : false;

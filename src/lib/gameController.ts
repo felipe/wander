@@ -44,12 +44,16 @@ export class GameController {
       this.manipulateAction(selectedAction);
     } else if (Object.values(MovementActions).includes(selectedAction)) {
       Response.console('Movement Action');
+
+      // any axis
       if (selectedAction === 'in') {
         this.setTile(this.currentTile.getIn() as MapSquare | MapOct);
       }
       if (selectedAction === 'out') {
         this.setTile(this.currentTile.getOut() as MapSquare | MapOct);
       }
+
+      // x axis
       if (selectedAction === 'top' || selectedAction === 'north') {
         this.setTile(this.currentTile.getTop() as MapSquare | MapOct);
       }
@@ -77,6 +81,16 @@ export class GameController {
       ) {
         this.setTile(this.currentTile.getBottomRight() as MapSquare | MapOct);
       }
+
+      // y axis
+      if (selectedAction === 'up') {
+        this.setTile(this.currentTile.getUp() as MapSquare | MapOct);
+      }
+
+      if (selectedAction === 'down') {
+        this.setTile(this.currentTile.getDown() as MapSquare | MapOct);
+      }
+
       this.enterTile();
     } else if (Object.values(ObservationActions).includes(selectedAction)) {
       Response.console('Observation Action');

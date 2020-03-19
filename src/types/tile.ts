@@ -17,6 +17,7 @@ export class Tile implements Tile {
 
   public exitAlias: Map<string, string> = new Map<string, string>();
 
+  // x axis
   public top: MapSquare | MapOct | null = null;
   public left: MapSquare | MapOct | null = null;
   public right: MapSquare | MapOct | null = null;
@@ -26,6 +27,10 @@ export class Tile implements Tile {
   public topRight: MapSquare | MapOct | null = null;
   public bottomLeft: MapSquare | MapOct | null = null;
   public bottomRight: MapSquare | MapOct | null = null;
+
+  // y axis
+  public up: MapSquare | MapOct | null = null;
+  public down: MapSquare | MapOct | null = null;
 
   constructor(
     name: string,
@@ -45,6 +50,7 @@ export class Tile implements Tile {
 
   public getExit(direction: string): MapSquare | MapOct | null {
     switch (direction) {
+      // x axis
       case 'top':
         return this.getTop();
       case 'left':
@@ -61,6 +67,12 @@ export class Tile implements Tile {
         return this.getBottomLeft();
       case 'bottomRight':
         return this.getBottomRight();
+
+      // y axis
+      case 'up':
+        return this.getUp();
+      case 'down':
+        return this.getDown();
     }
 
     return null;
@@ -77,6 +89,7 @@ export class Tile implements Tile {
 
   public addExit(direction: string, tile: MapSquare | MapOct, alias?: string) {
     switch (direction) {
+      // x axis
       case 'top':
         this.setTop(tile);
         break;
@@ -101,6 +114,14 @@ export class Tile implements Tile {
       case 'bottomRight':
         this.setBottomRight(tile);
         break;
+
+      // y axis
+      case 'up':
+        this.setUp(tile);
+        break;
+      case 'down':
+        this.setDown(tile);
+        break;
     }
     if (alias) {
       this.exitAlias.set(direction, alias);
@@ -111,6 +132,7 @@ export class Tile implements Tile {
   public getIn(): MapSquare | MapOct | null {
     const inside: string[] = [];
     this.exitAlias.forEach((alias, tile) => {
+      // TODO: This wont work if there is more than one "in" location in the tile.
       if (alias.startsWith('In ')) {
         inside.push(tile);
       }
@@ -119,6 +141,7 @@ export class Tile implements Tile {
     return inside.length === 1 ? this.getExit(inside[0]) : null;
   }
 
+  // TODO: This only works with squares in the x axis
   public getOut(): MapSquare | MapOct | null {
     if (this.exits.length === 1) {
       if (this.top !== null) {
@@ -136,6 +159,7 @@ export class Tile implements Tile {
     return null;
   }
 
+  // x axis gets
   public getTop(): MapSquare | MapOct | null {
     return this.top;
   }
@@ -168,6 +192,16 @@ export class Tile implements Tile {
     return this.bottomRight;
   }
 
+  // y axis gets
+  public getUp(): MapSquare | MapOct | null {
+    return this.up;
+  }
+
+  public getDown(): MapSquare | MapOct | null {
+    return this.down;
+  }
+
+  // x axis sets
   private setTop(tile: MapSquare | MapOct): void {
     this.top = tile;
   }
@@ -198,6 +232,15 @@ export class Tile implements Tile {
 
   private setBottomRight(tile: MapSquare | MapOct): void {
     this.bottomRight = tile;
+  }
+
+  // y axis sets
+  private setUp(tile: MapSquare | MapOct): void {
+    this.up = tile;
+  }
+
+  private setDown(tile: MapSquare | MapOct): void {
+    this.down = tile;
   }
 
   private getTextExitList(): string {
