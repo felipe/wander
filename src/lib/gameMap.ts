@@ -25,13 +25,25 @@ export class GameMap {
         case 'octagon':
           loadedOcts.set(
             key,
-            new MapOct(tile.name, tile.description, tile.value, tile.items)
+            new MapOct(
+              tile.id,
+              tile.name,
+              tile.description,
+              tile.value,
+              tile.items
+            )
           );
           break;
         default:
           loadedSquares.set(
             key,
-            new MapSquare(tile.name, tile.description, tile.value, tile.items)
+            new MapSquare(
+              tile.id,
+              tile.name,
+              tile.description,
+              tile.value,
+              tile.items
+            )
           );
           break;
       }

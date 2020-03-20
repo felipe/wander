@@ -1,1 +1,5 @@
-export enum ManipulationActions {}
+export enum ManipulationActions {
+  move,
+  enable,
+  'turn on'
+}

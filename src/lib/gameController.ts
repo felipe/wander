@@ -1,9 +1,11 @@
 import {
   AquireActions,
+  BellicoseActions,
   ManipulationActions,
   MovementActions,
   ObservationActions,
-  SupportActions
+  SupportActions,
+  UsageActions
 } from '../types/actions';
 import { MapOct } from '../types/mapOct';
 import { MapSquare } from '../types/mapSquare';
@@ -42,6 +44,10 @@ export class GameController {
       this.aquireAction(selectedAction, selectedSubject);
     } else if (Object.values(ManipulationActions).includes(selectedAction)) {
       this.manipulateAction(selectedAction);
+    } else if (Object.values(UsageActions).includes(selectedAction)) {
+      this.usageAction(selectedAction, selectedSubject);
+    } else if (Object.values(BellicoseActions).includes(selectedAction)) {
+      this.bellicoseAction(selectedAction, selectedSubject);
     } else if (Object.values(MovementActions).includes(selectedAction)) {
       Response.console('Movement Action');
 
@@ -123,10 +129,53 @@ export class GameController {
   public aquireAction(action: string, subject: string) {
     Response.console('Aquire action');
     const item = this.items.getItem(subject);
-    if (item) {
+    if (item && !item._taken) {
       Response.console(this.user.addToInventory(item));
       item.take();
+    } else if (item) {
+      Response.console(
+        `There is no ${item?.getName()} here. Did you take it already?`
+      );
+    } else {
+      // TODO: Is this a mistake? no item to acquire
+      Response.console(
+        `${subject.charAt(0).toUpperCase() + subject.slice(1)}?! Where!?`
+      );
     }
+    this.actionQuery();
+  }
+
+  public usageAction(action: string, subject: string) {
+    // Using an item requires you to have it on your person
+    const item = this.user.getItem(this.items.getItemId(subject));
+    if (item && item.getDurability() > 0) {
+      // Item exists and is not spent
+      const outcome = item.getUsageOutcome(this.currentTile.id);
+      if (outcome) {
+        const outcomeItem = this.items.getItem(outcome);
+        if (outcomeItem && !outcomeItem._taken) {
+          // The current tile has an outcome for the action
+          Response.console(item.getUsageMessage());
+          Response.console(this.user.addToInventory(outcomeItem));
+          outcomeItem.take();
+        } else {
+          Response.console(`Have you done this before?`);
+        }
+      } else {
+        Response.console(
+          `There are many places where you can do that. This is not one of them.`
+        );
+      }
+    } else {
+      Response.console(`You do not seem to have a ${subject} to use.`);
+    }
+
+    Response.console('Use Action');
+    this.actionQuery();
+  }
+
+  public bellicoseAction(action: string, subject: string) {
+    Response.console('Attack/Defend Action');
     this.actionQuery();
   }
 

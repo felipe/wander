@@ -8,6 +8,7 @@ import chalk from 'chalk';
 export interface Tile extends Meta, Oct {}
 
 export class Tile implements Tile {
+  public id = '';
   public name = '';
   public description = '';
   public value = 0;
@@ -33,11 +34,13 @@ export class Tile implements Tile {
   public down: MapSquare | MapOct | null = null;
 
   constructor(
+    id: string,
     name: string,
     description: string,
     value: number,
     items: string[]
   ) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.value = value;

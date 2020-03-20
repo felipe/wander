@@ -18,6 +18,11 @@ export class User {
     return this.name;
   }
 
+  public getItem(itemName: string): Item | null {
+    const item = this.inventory.get(itemName);
+    return item ? item : null;
+  }
+
   public addToInventory(item: Item): string {
     this.inventory.set(item.getId(), item);
     return `${item.getName()} has been added to your Inventory`;

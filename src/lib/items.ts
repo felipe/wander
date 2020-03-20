@@ -32,15 +32,11 @@ export class Items {
   }
 
   public describe(location: Tile, itemName: string) {
-    let response: string;
     const formattedItemName = this.getItemId(itemName);
     const item = this.items.get(formattedItemName);
-    response =
-      item && this.validate(location, item, formattedItemName)
-        ? item.getDescription()
-        : `There is no ${itemName} here.`;
-
-    return response;
+    return item && this.validate(location, item, formattedItemName)
+      ? item.getDescription()
+      : `There is no ${itemName} here.`;
   }
 
   public getItemId(subject: string) {

@@ -1,6 +1,7 @@
 import { MapSquare } from './mapSquare';
 
 export interface MapOct extends MapSquare {
+  id: string;
   name: string;
   description: string;
   value: number;
@@ -37,6 +38,7 @@ export interface MapOct extends MapSquare {
 
 export class MapOct extends MapSquare {
   constructor(
+    id: string,
     name: string,
     description: string,
     value: number,
@@ -50,7 +52,7 @@ export class MapOct extends MapSquare {
     bottom: MapSquare | MapOct | null = null,
     bottomRight: MapSquare | MapOct | null = null
   ) {
-    super(name, description, value, items, top, left, right, bottom);
+    super(id, name, description, value, items, top, left, right, bottom);
     this.topLeft = topLeft;
     this.topRight = topRight;
     this.bottomLeft = bottomLeft;

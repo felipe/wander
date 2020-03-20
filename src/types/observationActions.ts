@@ -3,5 +3,6 @@ export enum ObservationActions {
   examine,
   check,
   inspect,
-  view
+  view,
+  describe
 }
