@@ -6,6 +6,7 @@
   "tileType": "square",
   "tiles": {
     "cottage": {
+      "id": "cottage",
       "name": "Cottage",
       "description": "You are standing in a small cottage.",
       "items": [ "fishingPole" ],
@@ -18,6 +19,7 @@
       }
     },
     "gardenPath": {
+      "id": "gardenPath",
       "name": "Lush Garden Path",
       "description": "You are standing on a lush garden path. There is a cottage here.",
       "items": [ "roseBush" ],
@@ -34,6 +36,7 @@
       }
     },
     "fishingPond": {
+      "id": "fishingPond",
       "name": "Fishing Pond",
       "description": "You are at the edge of a small fishing pond.",
       "items": [ "fish" ],
@@ -46,6 +49,7 @@
       }
     },
     "windingPath": {
+      "id": "windingPath",
       "name": "Winding Path",
       "description": "You are walking along a winding path. There is a tall tree here.",
       "value": 1,
@@ -62,6 +66,7 @@
       }
     },
     "treeTop": {
+      "id": "treeTop",
       "name": "Top of the Tall Tree",
       "description": "You are the top of the tall tree.",
       "items": [ "deadBranch" ],
@@ -80,8 +85,20 @@
       "name": "Fishing Pole",
       "value": 1,
       "quantity": 1,
+      "obtainable": true,
       "description": "It is a simple fishing pole.",
-      "durability": 1
+      "durability": 1,
+      "weaponized": false,
+      "messages": {
+        "usage": [ "You've caught a fish! What skill!" ],
+        "depleted": [ "You seem to have lost your hook. No more fishing for now." ]
+      },
+      "outcomes": {
+        "usage": [[ "fishingPond", "fish" ]]
+      },
+      "actions": {
+        "usage": [ "fish", "catch" ]
+      }
     },
     "roseBush": {
       "name": "Rose Bush",
@@ -93,7 +110,8 @@
       "name": "Fish",
       "value": 1,
       "quantity": 1,
-      "durability": 1
+      "durability": 1,
+      "hidden": true
     },
     "deadBranch": {
       "name": "Stout, Dead Branch",

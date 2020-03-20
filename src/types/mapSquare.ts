@@ -2,6 +2,7 @@ import { MapOct } from './mapOct';
 import { Tile } from './tile';
 
 export interface MapSquare extends Tile {
+  id: string;
   name: string;
   description: string;
   value: number;
@@ -38,6 +39,7 @@ export interface MapSquare extends Tile {
 
 export class MapSquare extends Tile {
   constructor(
+    id: string,
     name: string,
     description: string,
     value: number,
@@ -47,7 +49,7 @@ export class MapSquare extends Tile {
     right: MapSquare | MapOct | null = null,
     bottom: MapSquare | MapOct | null = null
   ) {
-    super(name, description, value, items);
+    super(id, name, description, value, items);
     this.top = top;
     if (top != null) {
       this.exits.push('top');

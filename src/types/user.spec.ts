@@ -44,3 +44,17 @@ test('Two items in inventory', (t: any) => {
   user2.addToInventory(i2);
   t.deepEqual(user2.listInventory(), '1x Barrel\r\n2x Mop');
 });
+
+test('Take item from inventory', (t: any) => {
+  const user3 = new User(userID);
+  const i1 = new Item('1', item1);
+  user3.addToInventory(i1);
+  t.deepEqual(user3.getItem('1'), i1);
+});
+
+test('Take non-existent item from inventory', (t: any) => {
+  const user3 = new User(userID);
+  const i1 = new Item('1', item1);
+  user3.addToInventory(i1);
+  t.deepEqual(user3.getItem('3'), null);
+});

@@ -5,7 +5,10 @@ const item1 = {
   description: 'It is a simple barrel.',
   name: 'Barrel',
   quantity: 1,
-  value: 1
+  value: 1,
+  messages: {
+    usage: ['How do you use a barrel?']
+  }
 };
 
 const item2 = {
@@ -13,7 +16,8 @@ const item2 = {
   name: 'Invisibility Cloak',
   hidden: true,
   quantity: 1,
-  value: 1
+  value: 1,
+  taken: false
 };
 
 test('Check item name', (t: any) => {
@@ -46,4 +50,16 @@ test('Destroy item', (t: any) => {
 test('Verify item is hidden', (t: any) => {
   const i2 = new Item('invisibility_cloak', item2);
   t.deepEqual(i2.isHidden(), true);
+});
+
+test('Take Item', (t: any) => {
+  const i2 = new Item('invisibility_cloak', item2);
+  t.deepEqual(i2.wasTaken(), false);
+  i2.take();
+  t.deepEqual(i2.wasTaken(), true);
+});
+
+test('Get Usage Message', (t: any) => {
+  const i1 = new Item('barrel', item1);
+  t.deepEqual(i1.getUsageMessage(), 'How do you use a barrel?');
 });
