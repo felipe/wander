@@ -2,7 +2,7 @@ import * as Winston from 'winston';
 
 const transport = new Winston.transports.Console();
 const logger = Winston.createLogger({
-  transports: [transport]
+  transports: [transport],
 });
 
 export function console(message: string): void {

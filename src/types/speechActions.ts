@@ -1,5 +1,5 @@
 export enum SpeechActions {
   say,
   shout,
-  whisper
+  whisper,
 }

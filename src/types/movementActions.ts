@@ -10,5 +10,5 @@ export enum MovementActions {
   out,
   in,
   up,
-  down
+  down,
 }

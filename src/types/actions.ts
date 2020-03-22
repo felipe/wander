@@ -7,6 +7,8 @@ export * from './speechActions';
 export * from './supportActions';
 export * from './usageActions';
 
+// TODO: Create the action Interfaces dynamically
+
 export interface StringActions {
   aquire: string[];
   bellicose: string[];
@@ -19,12 +21,12 @@ export interface StringActions {
 }
 
 export interface MapActions {
-  aquire?: Map<string, string>;
-  bellicose?: Map<string, string>;
-  manipulation?: Map<string, string>;
-  movement?: Map<string, string>;
-  observation?: Map<string, string>;
-  speech?: Map<string, string>;
-  support?: Map<string, string>;
-  usage?: Map<string, string>;
+  aquire: Map<string, string>;
+  bellicose: Map<string, string>;
+  manipulation: Map<string, string>;
+  movement: Map<string, string>;
+  observation: Map<string, string>;
+  speech: Map<string, string>;
+  support: Map<string, string>;
+  usage: Map<string, string>;
 }

@@ -1,7 +1,7 @@
 export class Choice {
   public static build(array: string[]) {
     const options: Choice[] = [];
-    array.forEach(option => {
+    array.forEach((option) => {
       options.push(new Choice(option));
     });
     return options;

@@ -63,7 +63,7 @@ export class GameMap {
       const rawExits: string[] = rawTiles[key].exits;
       const rawExitAlias: Map<string, string> = rawTiles[key].exitAlias;
       const currentTile = exitMap.get(key);
-      Object.keys(rawExits).forEach(exitKey => {
+      Object.keys(rawExits).forEach((exitKey) => {
         currentTile!.addExit(
           exitKey,
           exitMap.get(rawExits[exitKey as any]) as MapSquare | MapOct,

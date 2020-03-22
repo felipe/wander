@@ -54,7 +54,7 @@ export class Item implements Item {
     //   const support = "";
 
     return {
-      usage
+      usage,
     };
   }
 
@@ -104,7 +104,7 @@ export class Item implements Item {
   }
 
   public getUsageOutcome(tileId: string) {
-    const outcome = this._outcomes.usage?.get(tileId);
+    const outcome = this._outcomes.usage.get(tileId);
     return outcome !== undefined ? outcome : null;
   }
 }

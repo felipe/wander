@@ -11,14 +11,14 @@ const item1 = {
   description: 'It is a simple barrel.',
   name: 'Barrel',
   quantity: 1,
-  value: 1
+  value: 1,
 };
 
 const item2 = {
   description: 'It is a simple mop.',
   name: 'Mop',
   quantity: 2,
-  value: 1
+  value: 1,
 };
 
 test('User ID should match', (t: any) => {
