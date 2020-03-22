@@ -4,3 +4,4 @@ coverage
 build
 node_modules
 yarn-error.log
+games/action_castle.json
