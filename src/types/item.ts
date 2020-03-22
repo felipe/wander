@@ -54,7 +54,7 @@ export class Item implements Item {
     //   const support = "";
 
     return {
-      usage
+      usage,
     };
   }
 

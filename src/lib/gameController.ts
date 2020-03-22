@@ -5,7 +5,7 @@ import {
   MovementActions,
   ObservationActions,
   SupportActions,
-  UsageActions
+  UsageActions,
 } from '../types/actions';
 import { MapOct } from '../types/mapOct';
 import { MapSquare } from '../types/mapSquare';
@@ -213,7 +213,7 @@ export class GameController {
 
   private getTextItemList() {
     let items = '';
-    this.currentTile.items.forEach(item => {
+    this.currentTile.items.forEach((item) => {
       if (!this.items.isHidden(item) && !this.items.wasTaken(item)) {
         items += `There is a ${chalk.underline.bold(
           this.items.getName(item)

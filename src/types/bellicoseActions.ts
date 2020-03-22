@@ -1,4 +1,4 @@
 export enum BellicoseActions {
   hit,
-  club
+  club,
 }

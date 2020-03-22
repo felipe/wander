@@ -4,5 +4,5 @@ export enum SupportActions {
   save,
   load,
   restore,
-  score
+  score,
 }

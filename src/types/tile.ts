@@ -263,7 +263,7 @@ export class Tile implements Tile {
 
   private getTextItemList(): string {
     let items = '';
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       items += `There is a ${chalk.underline.bold(item)} here. `;
     });
     return items;

@@ -34,7 +34,7 @@ export class User {
 
   public listInventory(): string {
     let list = '';
-    this.inventory.forEach(item => {
+    this.inventory.forEach((item) => {
       const nl = list !== '' ? '\r\n' : '';
       list = list + nl + `${item.getQuantity()}x ${item.getName()}`;
     });

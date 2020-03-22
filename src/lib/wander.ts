@@ -22,7 +22,7 @@ export class Wander {
     const gameItems = new Items(selectedGame.items);
 
     if (selectedGame.banner) {
-      selectedGame.banner.forEach(row => {
+      selectedGame.banner.forEach((row) => {
         Response.console(row);
       });
     } else {
@@ -38,14 +38,14 @@ export class Wander {
         if (err) {
           throw err;
         }
-        gameFiles.forEach(gameFile => {
+        gameFiles.forEach((gameFile) => {
           const game: Game = require('../../.' + gamesPath + gameFile);
           this.options.push(new Choice(game.title, game.node));
           this.games.set(game.node, game);
         });
         resolve();
       });
-    }).catch(err => {
+    }).catch((err) => {
       throw err;
     });
   }

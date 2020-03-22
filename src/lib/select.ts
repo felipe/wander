@@ -5,7 +5,7 @@ import { Choice } from '../types/choice';
 export class Select {
   /* istanbul ignore next */
   public static builder(question: string, choices: Choice[]) {
-    const values = choices.map(el => {
+    const values = choices.map((el) => {
       const o = { ...el };
       return o.name.toUpperCase();
     });

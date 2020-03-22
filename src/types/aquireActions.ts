@@ -1,5 +1,5 @@
 export enum AquireActions {
   take,
   swipe,
-  steal
+  steal,
 }

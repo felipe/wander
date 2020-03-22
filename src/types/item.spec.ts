@@ -9,14 +9,14 @@ const item1 = {
   durability: 1,
   taken: true,
   messages: {
-    usage: ['How do you use a barrel?']
+    usage: ['How do you use a barrel?'],
   },
   outcomes: {
     usage: [
       ['winery', 'wine'],
-      ['refinery', 'oil']
-    ]
-  }
+      ['refinery', 'oil'],
+    ],
+  },
 };
 
 const item2 = {
@@ -26,7 +26,7 @@ const item2 = {
   quantity: 1,
   value: 1,
   taken: false,
-  outcomes: {}
+  outcomes: {},
 };
 
 test('Check item name', (t: any) => {
