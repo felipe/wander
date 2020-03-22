@@ -34,13 +34,16 @@ export class Wander {
 
   private async fetchGames() {
     await new Promise((resolve, reject) => {
-      fs.readdir(gamesPath, (err, gameFile) => {
+
+      fs.readdir(gamesPath, (err, gameFiles) => {
         if (err) {
           throw err;
         }
-        const game: Game = require('../../.' + gamesPath + gameFile);
-        this.options.push(new Choice(game.title, game.node));
-        this.games.set(game.node, game);
+        gameFiles.forEach(gameFile => {
+          const game: Game = require('../../.' + gamesPath + gameFile);
+          this.options.push(new Choice(game.title, game.node));
+          this.games.set(game.node, game);
+        });
         resolve();
       });
     }).catch(err => {
