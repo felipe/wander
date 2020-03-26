@@ -7,6 +7,7 @@ export interface Item {
   _quantity: number;
   _durability: number;
   _description: string;
+  _obtainable: boolean;
   _destroyed: boolean;
   _messages: StringActions;
   _outcomes: MapActions;
@@ -22,6 +23,7 @@ export class Item implements Item {
     this._durability = item.durability;
     this._description = item.description;
     this._destroyed = false;
+    this._obtainable = item.obtainable ? item.obtainable : false;
     this._hidden = item.hidden ? item.hidden : false;
     this._taken = item.taken ? item.taken : false;
     this._value = item.value;
@@ -66,6 +68,10 @@ export class Item implements Item {
     return this._hidden;
   }
 
+  public isObtainable() {
+    return this._obtainable;
+  }
+
   public wasTaken() {
     return this._taken;
   }
@@ -96,6 +102,13 @@ export class Item implements Item {
 
   public take() {
     this._taken = true;
+  }
+
+  public getAquisitionMessage() {
+    const messages = this._messages.aquire;
+    return messages
+      ? messages[Math.floor(Math.random() * messages.length)]
+      : '';
   }
 
   public getUsageMessage() {

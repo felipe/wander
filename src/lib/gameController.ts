@@ -1,3 +1,4 @@
+import fs from 'fs';
 import {
   AquireActions,
   BellicoseActions,
@@ -129,12 +130,19 @@ export class GameController {
   public aquireAction(action: string, subject: string) {
     Response.console('Aquire action');
     const item = this.items.getItem(subject);
-    if (item && !item._taken) {
+    if (item && item.isObtainable() && !item.wasTaken()) {
+      const message = item.getAquisitionMessage();
+      if (message) {
+        Response.console(message);
+      }
       Response.console(this.user.addToInventory(item));
       item.take();
     } else if (item) {
+      const message = item.getAquisitionMessage();
       Response.console(
-        `There is no ${item?.getName()} here. Did you take it already?`
+        message
+          ? message
+          : `There is no ${item?.getName()} here. Did you take it already?`
       );
     } else {
       // TODO: Is this a mistake? no item to acquire

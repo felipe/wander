@@ -33,7 +33,7 @@ export class Wander {
   }
 
   private async fetchGames() {
-    await new Promise((resolve, reject) => {
+    await new Promise((resolve) => {
       fs.readdir(gamesPath, (err, gameFiles) => {
         if (err) {
           throw err;
