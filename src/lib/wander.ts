@@ -1,4 +1,4 @@
-import fa from 'fs';
+import fs from 'fs';
 import { Choice } from '../types/choice';
 import { Game } from '../types/game';
 import { GameController } from './gameController';
