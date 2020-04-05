@@ -56,7 +56,7 @@
   "dependencies": {
     "@types/readline-sync": "^1.4.3",
     "@types/uuid": "^7.0.2",
-    "aws-sdk": "^2.627.0",
+    "aws-sdk": "^2.653.0",
     "axios": "^0.19.2",
     "chalk": "^4.0.0",
     "readline-sync": "^1.4.9",
@@ -93,6 +93,11 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "greenkeeper": {
+    "ignore": [
+      "@types/node"
+    ]
   },
   "prettier": {
     "singleQuote": true
