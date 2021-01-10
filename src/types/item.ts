@@ -1,4 +1,4 @@
-import { StringActions, MapActions } from './actions';
+import { MapActions, StringActions } from './actions';
 
 export interface Item {
   _id: string;
@@ -27,35 +27,6 @@ export class Item implements Item {
     this._value = item.value;
     this._messages = item.messages;
     this._outcomes = this.loadOutcomes(item.outcomes);
-  }
-
-  private objectMapper(objectToMap: any, action: string) {
-    const map = new Map<string, string>();
-
-    if (objectToMap !== undefined) {
-      if (objectToMap[action] !== undefined) {
-        objectToMap[action].forEach((key: any) => {
-          map.set(key[0], key[1]);
-        });
-      }
-    }
-
-    return map;
-  }
-
-  private loadOutcomes(outcomesArray: any): any {
-    const usage = this.objectMapper(outcomesArray, 'usage');
-    //   const aquire = "";
-    //   const bellicose = "";
-    //   const manipulation = "";
-    //   const movement = "";
-    //   const observation = "";
-    //   const speech = "";
-    //   const support = "";
-
-    return {
-      usage,
-    };
   }
 
   public isDestroyed() {
@@ -106,5 +77,34 @@ export class Item implements Item {
   public getUsageOutcome(tileId: string) {
     const outcome = this._outcomes.usage.get(tileId);
     return outcome !== undefined ? outcome : null;
+  }
+
+  private objectMapper(objectToMap: any, action: string) {
+    const map = new Map<string, string>();
+
+    if (objectToMap !== undefined) {
+      if (objectToMap[action] !== undefined) {
+        objectToMap[action].forEach((key: any) => {
+          map.set(key[0], key[1]);
+        });
+      }
+    }
+
+    return map;
+  }
+
+  private loadOutcomes(outcomesArray: any): any {
+    const usage = this.objectMapper(outcomesArray, 'usage');
+    //   const aquire = "";
+    //   const bellicose = "";
+    //   const manipulation = "";
+    //   const movement = "";
+    //   const observation = "";
+    //   const speech = "";
+    //   const support = "";
+
+    return {
+      usage,
+    };
   }
 }
