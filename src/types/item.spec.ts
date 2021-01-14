@@ -29,6 +29,18 @@ const item2 = {
   value: 1,
 };
 
+const item3 = {
+  description: 'A sparkling chest made of gold.',
+  durability: 1,
+  items: ['holyGrail'],
+  messages: {},
+  name: 'Golden Chest',
+  outcomes: {},
+  quantity: 1,
+  taken: true,
+  value: 1,
+};
+
 test('Check item name', (t: any) => {
   const i1 = new Item('barrel', item1);
   t.deepEqual(i1.getName(), 'Barrel');
@@ -37,6 +49,14 @@ test('Check item name', (t: any) => {
 test('Check item description', (t: any) => {
   const i1 = new Item('barrel', item1);
   t.deepEqual(i1.getDescription(), 'It is a simple barrel.');
+});
+
+test('Check item description, with contents', (t: any) => {
+  const i1 = new Item('goldenChest', item3);
+  t.deepEqual(
+    i1.getDescription(),
+    'A sparkling chest made of gold. It contains a holyGrail'
+  );
 });
 
 test('Verify item is not hidden', (t: any) => {

@@ -4,6 +4,7 @@ export interface MapOct extends MapSquare {
   id: string;
   name: string;
   description: string;
+  detailedDescription: string;
   value: number;
   items: string[];
 
@@ -41,6 +42,7 @@ export class MapOct extends MapSquare {
     id: string,
     name: string,
     description: string,
+    detailedDescription: string,
     value: number,
     items: string[],
     topLeft: MapSquare | MapOct | null = null,
@@ -52,7 +54,18 @@ export class MapOct extends MapSquare {
     bottom: MapSquare | MapOct | null = null,
     bottomRight: MapSquare | MapOct | null = null
   ) {
-    super(id, name, description, value, items, top, left, right, bottom);
+    super(
+      id,
+      name,
+      description,
+      detailedDescription,
+      value,
+      items,
+      top,
+      left,
+      right,
+      bottom
+    );
     this.topLeft = topLeft;
     this.topRight = topRight;
     this.bottomLeft = bottomLeft;
