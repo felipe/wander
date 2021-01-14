@@ -49,7 +49,7 @@ export class GameController {
     } else if (Object.values(BellicoseActions).includes(selectedAction)) {
       this.bellicoseAction(selectedAction, selectedSubject);
     } else if (Object.values(MovementActions).includes(selectedAction)) {
-      Response.console('Movement Action');
+      Response.debug('action', 'Movement');
 
       // any axis
       if (selectedAction === 'in') {
@@ -99,7 +99,7 @@ export class GameController {
 
       this.enterTile();
     } else if (Object.values(ObservationActions).includes(selectedAction)) {
-      Response.console('Observation Action');
+      Response.debug('action', 'Observation');
       this.observeAction(selectedAction, selectedSubject);
     } else if (Object.values(SupportActions).includes(selectedAction)) {
       this.supportAction(selectedAction);
@@ -127,20 +127,33 @@ export class GameController {
   }
 
   public aquireAction(action: string, subject: string) {
-    Response.console('Aquire action');
-    const item = this.items.getItem(subject);
-    if (item && !item._taken) {
-      Response.console(this.user.addToInventory(item));
-      item.take();
-    } else if (item) {
-      Response.console(
-        `There is no ${item?.getName()} here. Did you take it already?`
-      );
-    } else {
-      // TODO: Is this a mistake? no item to acquire
-      Response.console(
-        `${subject.charAt(0).toUpperCase() + subject.slice(1)}?! Where!?`
-      );
+    Response.debug('action', 'Aquire');
+    try {
+      const item = this.items.getItem(this.currentTile, subject);
+
+      if (item && item.isObtainable() && !item.wasTaken()) {
+        const message = item.getAquisitionMessage();
+        if (message) {
+          Response.console(message);
+        }
+        Response.console(this.user.addToInventory(item));
+        item.take();
+      } else if (item) {
+        const message = item.getAquisitionMessage(false);
+        Response.console(
+          message
+            ? message
+            : `There is no ${item?.getName()} here. Did you take it already?`
+        );
+      } else {
+        // TODO: Is this a mistake? no item to acquire
+        Response.console(
+          `${subject.charAt(0).toUpperCase() + subject.slice(1)}?! Where!?`
+        );
+      }
+    } catch (e) {
+      Response.error('AquireActionError', e);
+      Response.console('I dont think I can take that.');
     }
     this.actionQuery();
   }
@@ -152,7 +165,7 @@ export class GameController {
       // Item exists and is not spent
       const outcome = item.getUsageOutcome(this.currentTile.id);
       if (outcome) {
-        const outcomeItem = this.items.getItem(outcome);
+        const outcomeItem = this.items.getItem(this.currentTile, outcome);
         if (outcomeItem && !outcomeItem._taken) {
           // The current tile has an outcome for the action
           Response.console(item.getUsageMessage());
@@ -185,7 +198,12 @@ export class GameController {
   }
 
   public observeAction(action: string, subject: string) {
-    Response.console(this.items.describe(this.currentTile, subject));
+    // Describe the current tile if no subject is given.
+    Response.console(
+      subject
+        ? this.items.describe(this.currentTile, subject)
+        : this.getFullDetailedDescription()
+    );
     this.actionQuery();
   }
 
@@ -197,7 +215,9 @@ export class GameController {
       case 'inventory':
         const inventory = this.user.listInventory();
         Response.console(
-          inventory === '' ? 'Your Inventory is empty.' : inventory
+          inventory === ''
+            ? 'Your Inventory is empty.'
+            : 'Your inventory contains: \n' + inventory
         );
         break;
       default:
@@ -209,6 +229,12 @@ export class GameController {
 
   private getFullDescription() {
     return this.currentTile.description + ' ' + this.getTextItemList();
+  }
+
+  private getFullDetailedDescription() {
+    return this.currentTile.detailedDescription
+      ? this.currentTile.detailedDescription
+      : this.currentTile.description + ' ' + this.getTextItemList();
   }
 
   private getTextItemList() {

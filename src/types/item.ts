@@ -1,12 +1,16 @@
 import { MapActions, StringActions } from './actions';
 
+import chalk from 'chalk';
+
 export interface Item {
   _id: string;
+  _items: string[];
   _hidden: boolean;
   _name: string;
   _quantity: number;
   _durability: number;
   _description: string;
+  _obtainable: boolean;
   _destroyed: boolean;
   _messages: StringActions;
   _outcomes: MapActions;
@@ -17,11 +21,13 @@ export interface Item {
 export class Item implements Item {
   constructor(id: string, item: any) {
     this._id = id;
+    this._items = item.items ? item.items : [];
     this._name = item.name;
     this._quantity = item.quantity;
     this._durability = item.durability;
     this._description = item.description;
     this._destroyed = false;
+    this._obtainable = item.obtainable ? item.obtainable : false;
     this._hidden = item.hidden ? item.hidden : false;
     this._taken = item.taken ? item.taken : false;
     this._value = item.value;
@@ -35,6 +41,10 @@ export class Item implements Item {
 
   public isHidden() {
     return this._hidden;
+  }
+
+  public isObtainable() {
+    return this._obtainable;
   }
 
   public wasTaken() {
@@ -54,7 +64,10 @@ export class Item implements Item {
   }
 
   public getDescription() {
-    return this._description;
+    const description =
+      this._description +
+      (this._items.length > 0 ? this.getTextItemList() : '');
+    return description ? description : 'It looks like it should.';
   }
 
   public getDurability() {
@@ -69,6 +82,20 @@ export class Item implements Item {
     this._taken = true;
   }
 
+  public getAquisitionMessage(success: boolean = true) {
+    const messages = this._messages
+      ? this._messages.aquire
+        ? this._messages.aquire[success ? 'success' : 'failure']
+          ? this._messages.aquire[success ? 'success' : 'failure']
+          : this._messages.aquire
+        : null
+      : null;
+
+    return messages
+      ? messages[Math.floor(Math.random() * messages.length)]
+      : '';
+  }
+
   public getUsageMessage() {
     const messages = this._messages.usage;
     return messages[Math.floor(Math.random() * messages.length)];
@@ -77,6 +104,16 @@ export class Item implements Item {
   public getUsageOutcome(tileId: string) {
     const outcome = this._outcomes.usage.get(tileId);
     return outcome !== undefined ? outcome : null;
+  }
+
+  private getTextItemList(): string {
+    let items = ` It contains `;
+
+    this._items.forEach((item) => {
+      items += `a ${chalk.underline.bold(item)}`;
+    });
+
+    return this._items.length > 0 ? items : '';
   }
 
   private objectMapper(objectToMap: any, action: string) {

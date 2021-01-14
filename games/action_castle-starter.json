@@ -22,7 +22,7 @@
       "id": "gardenPath",
       "name": "Lush Garden Path",
       "description": "You are standing on a lush garden path. There is a cottage here.",
-      "items": [ "roseBush" ],
+      "items": [ "roseBush", "rose" ],
       "value": 1,
       "exits": {
         "left": "cottage",
@@ -100,11 +100,31 @@
         "usage": [ "fish", "catch" ]
       }
     },
+    "rose": {
+      "name": "Single Red Rose",
+      "value": 1,
+      "quantity": 1,
+      "durability": 1,
+      "obtainable": true,
+      "description": "It is beautiful",
+      "hidden": true,
+      "messages": {
+        "smell": "It smells good"
+      }
+    },
     "roseBush": {
       "name": "Rose Bush",
       "value": 1,
       "quantity": 1,
-      "durability": 1
+      "durability": 1,
+      "obtainable": false,
+      "items": [ "rose" ],
+      "description": "",
+      "messages": {
+        "aquire": {
+          "failure": [ "The whole bush? No, you cant take this" ]
+        }
+      }
     },
     "fish": {
       "name": "Fish",
@@ -117,7 +137,8 @@
       "name": "Stout, Dead Branch",
       "value": 1,
       "quantity": 1,
-      "durability": 1
+      "durability": 1,
+      "obtainable": true
     }
   }
 }

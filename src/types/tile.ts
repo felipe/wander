@@ -11,6 +11,7 @@ export class Tile implements Tile {
   public id = '';
   public name = '';
   public description = '';
+  public detailedDescription = '';
   public value = 0;
   public items: string[] = [];
 
@@ -37,12 +38,14 @@ export class Tile implements Tile {
     id: string,
     name: string,
     description: string,
+    detailedDescription: string,
     value: number,
     items: string[]
   ) {
     this.id = id;
     this.name = name;
     this.description = description;
+    this.detailedDescription = detailedDescription;
     this.value = value;
     this.items = items;
   }

@@ -29,6 +29,7 @@ export class GameMap {
               tile.id,
               tile.name,
               tile.description,
+              tile.detailedDescription,
               tile.value,
               tile.items
             )
@@ -41,6 +42,7 @@ export class GameMap {
               tile.id,
               tile.name,
               tile.description,
+              tile.detailedDescription,
               tile.value,
               tile.items
             )

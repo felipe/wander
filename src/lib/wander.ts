@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import { Choice } from '../types/choice';
 import { Game } from '../types/game';
 import { GameController } from './gameController';
@@ -33,7 +33,7 @@ export class Wander {
   }
 
   private async fetchGames() {
-    await new Promise((resolve, reject) => {
+    await new Promise((resolve) => {
       fs.readdir(gamesPath, (err, gameFiles) => {
         if (err) {
           throw err;

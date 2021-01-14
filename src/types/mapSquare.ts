@@ -5,6 +5,7 @@ export interface MapSquare extends Tile {
   id: string;
   name: string;
   description: string;
+  detailedDescription: string;
   value: number;
   items: string[];
 
@@ -42,6 +43,7 @@ export class MapSquare extends Tile {
     id: string,
     name: string,
     description: string,
+    detailedDescription: string,
     value: number,
     items: string[],
     top: MapSquare | MapOct | null = null,
@@ -49,7 +51,7 @@ export class MapSquare extends Tile {
     right: MapSquare | MapOct | null = null,
     bottom: MapSquare | MapOct | null = null
   ) {
-    super(id, name, description, value, items);
+    super(id, name, description, detailedDescription, value, items);
     this.top = top;
     if (top != null) {
       this.exits.push('top');
