@@ -27,8 +27,12 @@ export class Items {
     return response;
   }
 
-  public getItem(itemName: string) {
-    return this.items.get(this.getItemId(itemName));
+  public getItem(location: Tile, itemName: string) {
+    const formattedItemName = this.getItemId(itemName);
+    const item = this.items.get(this.getItemId(itemName));
+    return item && this.validate(location, item, formattedItemName)
+    ? item
+    : null
   }
 
   public describe(location: Tile, itemName: string) {

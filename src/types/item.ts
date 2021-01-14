@@ -75,8 +75,15 @@ export class Item implements Item {
     this._taken = true;
   }
 
-  public getAquisitionMessage() {
-    const messages = this._messages.aquire;
+  public getAquisitionMessage(success: boolean = true) {
+    const messages = this._messages
+      ? this._messages.aquire
+        ? this._messages.aquire[success ? 'success' : 'failure']
+          ? this._messages.aquire[success ? 'success' : 'failure']
+          : this._messages.aquire
+        : null
+      : null;
+
     return messages
       ? messages[Math.floor(Math.random() * messages.length)]
       : '';

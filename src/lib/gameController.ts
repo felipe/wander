@@ -128,7 +128,8 @@ export class GameController {
 
   public aquireAction(action: string, subject: string) {
     Response.console('Aquire action');
-    const item = this.items.getItem(subject);
+    const item = this.items.getItem(this.currentTile, subject);
+
     if (item && item.isObtainable() && !item.wasTaken()) {
       const message = item.getAquisitionMessage();
       if (message) {
@@ -137,7 +138,7 @@ export class GameController {
       Response.console(this.user.addToInventory(item));
       item.take();
     } else if (item) {
-      const message = item.getAquisitionMessage();
+      const message = item.getAquisitionMessage(false);
       Response.console(
         message
           ? message
@@ -159,7 +160,7 @@ export class GameController {
       // Item exists and is not spent
       const outcome = item.getUsageOutcome(this.currentTile.id);
       if (outcome) {
-        const outcomeItem = this.items.getItem(outcome);
+        const outcomeItem = this.items.getItem(this.currentTile, outcome);
         if (outcomeItem && !outcomeItem._taken) {
           // The current tile has an outcome for the action
           Response.console(item.getUsageMessage());
