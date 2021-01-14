@@ -31,8 +31,8 @@ export class Items {
     const formattedItemName = this.getItemId(itemName);
     const item = this.items.get(this.getItemId(itemName));
     return item && this.validate(location, item, formattedItemName)
-    ? item
-    : null
+      ? item
+      : null;
   }
 
   public describe(location: Tile, itemName: string) {
