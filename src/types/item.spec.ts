@@ -3,30 +3,30 @@ import { Item } from './item';
 
 const item1 = {
   description: 'It is a simple barrel.',
-  name: 'Barrel',
-  quantity: 1,
-  value: 1,
   durability: 1,
-  taken: true,
   messages: {
     usage: ['How do you use a barrel?'],
   },
+  name: 'Barrel',
   outcomes: {
     usage: [
       ['winery', 'wine'],
       ['refinery', 'oil'],
     ],
   },
+  quantity: 1,
+  taken: true,
+  value: 1,
 };
 
 const item2 = {
   description: 'This cloak makes you invisible.',
-  name: 'Invisibility Cloak',
   hidden: true,
-  quantity: 1,
-  value: 1,
-  taken: false,
+  name: 'Invisibility Cloak',
   outcomes: {},
+  quantity: 1,
+  taken: false,
+  value: 1,
 };
 
 test('Check item name', (t: any) => {
