@@ -34,8 +34,8 @@ export class GameController {
   public actionQuery(): void {
     const inputString = Select.getAction().trim();
     const parsedInput: any = new Parse(inputString);
-    const selectedAction = parsedInput.action.toLowerCase();
-    const selectedSubject = parsedInput.subject;
+    var selectedAction = parsedInput.action.toLowerCase();
+    var selectedSubject = parsedInput.subject;
 
     Response.info('intent', selectedAction);
 
@@ -50,6 +50,11 @@ export class GameController {
       this.bellicoseAction(selectedAction, selectedSubject);
     } else if (Object.values(MovementActions).includes(selectedAction)) {
       Response.debug('action', 'Movement');
+      
+      // Modifiers get excluded
+      if(selectedAction === 'go') {
+        selectedAction = selectedSubject
+      }
 
       // any axis
       if (selectedAction === 'in') {
