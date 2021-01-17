@@ -1,4 +1,5 @@
 export enum MovementActions {
+  go,
   top,
   north,
   bottom,

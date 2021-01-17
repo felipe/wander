@@ -53,7 +53,7 @@
       "name": "Winding Path",
       "description": "You are walking along a winding path. There is a tall tree here.",
       "value": 1,
-      "items": [],
+      "items": [ "tree" ],
       "exits": {
         "bottom": "gardenPath",
         "right": "drawbridge",
@@ -132,6 +132,15 @@
       "quantity": 1,
       "durability": 1,
       "hidden": true
+    },
+    "tree": {
+      "name": "Tall Tree",
+      "value": 1,
+      "quantity": 1,
+      "durability": 1,
+      "hidden": true,
+      "obtaineable": false,
+      "description": "It is so tall you can't see the top... but you're sure you could climb it"
     },
     "deadBranch": {
       "name": "Stout, Dead Branch",
