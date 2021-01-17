@@ -120,10 +120,14 @@ export class GameController {
   }
 
   public enterTile() {
-    Response.console('');
-    Response.console(this.getFullDescription());
-    Response.console(this.currentTile.getExits());
-    this.actionQuery();
+    try {
+      Response.console('');
+      Response.console(this.getFullDescription());
+      Response.console(this.currentTile.getExits());
+      this.actionQuery();
+    } catch (e) {
+      Response.error(`Error entering tile`, e);
+    }
   }
 
   public aquireAction(action: string, subject: string) {
