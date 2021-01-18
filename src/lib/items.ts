@@ -77,13 +77,11 @@ export class Items {
     try {
       this.items.forEach((i) => {
         name = i.hasAlias(subject) ? i.getId() : '';
-        if (name !== '') 
-        {
-          throw Error() // This is just to break out of the loop
+        if (name !== '') {
+          throw Error(); // This is just to break out of the loop
         }
       });
-    }
-    catch(e) {
+    } catch (e) {
       // Silence
     }
     return name;
