@@ -7,6 +7,7 @@ export interface Item {
   _items: string[];
   _hidden: boolean;
   _name: string;
+  _nameAlias: string[];
   _quantity: number;
   _durability: number;
   _description: string;
@@ -23,6 +24,7 @@ export class Item implements Item {
     this._id = id;
     this._items = item.items ? item.items : [];
     this._name = item.name;
+    this._nameAlias = item.nameAlias ? item.nameAlias : [];
     this._quantity = item.quantity;
     this._durability = item.durability;
     this._description = item.description;
@@ -104,6 +106,10 @@ export class Item implements Item {
   public getUsageOutcome(tileId: string) {
     const outcome = this._outcomes.usage.get(tileId);
     return outcome !== undefined ? outcome : null;
+  }
+
+  public hasAlias(possibleName: string) {
+    return this._nameAlias.includes(possibleName);
   }
 
   private getTextItemList(): string {

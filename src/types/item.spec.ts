@@ -35,6 +35,7 @@ const item3 = {
   items: ['holyGrail'],
   messages: {},
   name: 'Golden Chest',
+  nameAlias: ['gold chest', 'chest'],
   outcomes: {},
   quantity: 1,
   taken: true,
@@ -84,6 +85,13 @@ test('Verify item is hidden', (t: any) => {
 test('Verify item is taken', (t: any) => {
   const i1 = new Item('barrel', item1);
   t.deepEqual(i1.wasTaken(), true);
+});
+
+test('Verify item responds to its alias', (t: any) => {
+  const i3 = new Item('goldenChest', item3);
+  t.deepEqual(i3.hasAlias('gold chest'), true);
+  t.deepEqual(i3.hasAlias('chest'), true);
+  t.deepEqual(i3.hasAlias('coffer'), false);
 });
 
 test('Take Item', (t: any) => {
