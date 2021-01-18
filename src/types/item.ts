@@ -1,8 +1,7 @@
 import { MapActions, StringActions } from './actions';
 
-import chalk from 'chalk';
-
 export interface Item {
+  _article: string;
   _id: string;
   _items: string[];
   _hidden: boolean;
@@ -21,6 +20,7 @@ export interface Item {
 
 export class Item implements Item {
   constructor(id: string, item: any) {
+    this._article = item.article ? item.article : '';
     this._id = id;
     this._items = item.items ? item.items : [];
     this._name = item.name;
@@ -58,7 +58,11 @@ export class Item implements Item {
   }
 
   public getName() {
-    return this._name;
+    return (this._article ? this._article + ' ' : '') + this._name;
+  }
+
+  public getItems() {
+    return this._items;
   }
 
   public getQuantity() {
@@ -66,10 +70,7 @@ export class Item implements Item {
   }
 
   public getDescription() {
-    const description =
-      this._description +
-      (this._items.length > 0 ? this.getTextItemList() : '');
-    return description ? description : 'It looks like it should.';
+    return this._description ? this._description : 'It looks like it should.';
   }
 
   public getDurability() {
@@ -110,16 +111,6 @@ export class Item implements Item {
 
   public hasAlias(possibleName: string) {
     return this._nameAlias.includes(possibleName);
-  }
-
-  private getTextItemList(): string {
-    let items = ` It contains `;
-
-    this._items.forEach((item) => {
-      items += `a ${chalk.underline.bold(item)}`;
-    });
-
-    return this._items.length > 0 ? items : '';
   }
 
   private objectMapper(objectToMap: any, action: string) {

@@ -64,6 +64,7 @@
 	  "messages": {}
 	},
 	"matches": {
+	  "article": "a",
 	  "name": "Set of Matches",
 	  "nameAlias": [ "matches" ],
 	  "value": 1,

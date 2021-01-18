@@ -52,13 +52,14 @@ test('Check item description', (t: any) => {
   t.deepEqual(i1.getDescription(), 'It is a simple barrel.');
 });
 
-test('Check item description, with contents', (t: any) => {
-  const i1 = new Item('goldenChest', item3);
-  t.deepEqual(
-    i1.getDescription(),
-    'A sparkling chest made of gold. It contains a holyGrail'
-  );
-});
+// Should be moved to items
+// test('Check item description, with contents', (t: any) => {
+//   const i1 = new Item('goldenChest', item3);
+//   t.deepEqual(
+//     i1.getDescription(),
+//     'A sparkling chest made of gold. It contains a holyGrail'
+//   );
+// });
 
 test('Verify item is not hidden', (t: any) => {
   const i1 = new Item('barrel', item1);

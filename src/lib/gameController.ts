@@ -245,7 +245,7 @@ export class GameController {
     let items = '';
     this.currentTile.items.forEach((item) => {
       if (!this.items.isHidden(item) && !this.items.wasTaken(item)) {
-        items += `There is a ${chalk.underline.bold(
+        items += `There is ${chalk.underline.bold(
           this.items.getName(item)
         )} here. `;
       }

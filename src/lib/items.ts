@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 // import { User } from '../types/user'
 import { Item } from '../types/item';
 import { Tile } from '../types/tile';
@@ -39,7 +41,10 @@ export class Items {
     const formattedItemName = this.getItemId(itemName);
     const item = this.items.get(formattedItemName);
     return item && this.validate(location, item, formattedItemName)
-      ? item.getDescription()
+      ? `${item.getDescription()}${this.getTextItemList(
+          location,
+          item.getItems()
+        )}`
       : `There is no ${itemName} here.`;
   }
 
@@ -69,6 +74,17 @@ export class Items {
     return (
       item && location.items.includes(formattedItemName) && !item.isDestroyed()
     );
+  }
+
+  private getTextItemList(location: Tile, items: string[]): string {
+    let itemString = ` It contains `;
+
+    items.forEach((item) => {
+      const currentItem = this.getItem(location, item);
+      itemString += `${chalk.underline.bold(currentItem?.getName())}`;
+    });
+
+    return items.length > 0 ? itemString : '';
   }
 
   private findByAlias(subject: string): string {
