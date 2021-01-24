@@ -95,7 +95,9 @@ export class Item implements Item {
       : null;
 
     return messages
-      ? messages[Math.floor(Math.random() * messages.length)]
+      ? typeof messages === 'object'
+        ? messages[Math.floor(Math.random() * messages.length)]
+        : messages
       : '';
   }
 
