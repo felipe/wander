@@ -7,11 +7,11 @@ import {
   SupportActions,
   UsageActions,
 } from '../types/actions';
+import { Items } from '../types/items';
 import { MapOct } from '../types/mapOct';
 import { MapSquare } from '../types/mapSquare';
 import { User } from '../types/user';
 import { GameMap } from './gameMap';
-import { Items } from './items';
 import { Parse } from './parse';
 import * as Response from './response';
 import { Select } from './select';
