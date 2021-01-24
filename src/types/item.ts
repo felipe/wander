@@ -1,12 +1,12 @@
 import { MapActions, StringActions } from './actions';
 
-import chalk from 'chalk';
-
 export interface Item {
+  _article: string;
   _id: string;
   _items: string[];
   _hidden: boolean;
   _name: string;
+  _nameAlias: string[];
   _quantity: number;
   _durability: number;
   _description: string;
@@ -20,9 +20,11 @@ export interface Item {
 
 export class Item implements Item {
   constructor(id: string, item: any) {
+    this._article = item.article ? item.article : '';
     this._id = id;
     this._items = item.items ? item.items : [];
     this._name = item.name;
+    this._nameAlias = item.nameAlias ? item.nameAlias : [];
     this._quantity = item.quantity;
     this._durability = item.durability;
     this._description = item.description;
@@ -56,7 +58,11 @@ export class Item implements Item {
   }
 
   public getName() {
-    return this._name;
+    return (this._article ? this._article + ' ' : '') + this._name;
+  }
+
+  public getItems() {
+    return this._items;
   }
 
   public getQuantity() {
@@ -64,10 +70,7 @@ export class Item implements Item {
   }
 
   public getDescription() {
-    const description =
-      this._description +
-      (this._items.length > 0 ? this.getTextItemList() : '');
-    return description ? description : 'It looks like it should.';
+    return this._description ? this._description : 'It looks like it should.';
   }
 
   public getDurability() {
@@ -92,7 +95,9 @@ export class Item implements Item {
       : null;
 
     return messages
-      ? messages[Math.floor(Math.random() * messages.length)]
+      ? typeof messages === 'object'
+        ? messages[Math.floor(Math.random() * messages.length)]
+        : messages
       : '';
   }
 
@@ -106,14 +111,8 @@ export class Item implements Item {
     return outcome !== undefined ? outcome : null;
   }
 
-  private getTextItemList(): string {
-    let items = ` It contains `;
-
-    this._items.forEach((item) => {
-      items += `a ${chalk.underline.bold(item)}`;
-    });
-
-    return this._items.length > 0 ? items : '';
+  public hasAlias(possibleName: string) {
+    return this._nameAlias.includes(possibleName);
   }
 
   private objectMapper(objectToMap: any, action: string) {

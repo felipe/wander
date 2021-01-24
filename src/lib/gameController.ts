@@ -7,11 +7,11 @@ import {
   SupportActions,
   UsageActions,
 } from '../types/actions';
+import { Items } from '../types/items';
 import { MapOct } from '../types/mapOct';
 import { MapSquare } from '../types/mapSquare';
 import { User } from '../types/user';
 import { GameMap } from './gameMap';
-import { Items } from './items';
 import { Parse } from './parse';
 import * as Response from './response';
 import { Select } from './select';
@@ -125,10 +125,14 @@ export class GameController {
   }
 
   public enterTile() {
-    Response.console('');
-    Response.console(this.getFullDescription());
-    Response.console(this.currentTile.getExits());
-    this.actionQuery();
+    try {
+      Response.console('');
+      Response.console(this.getFullDescription());
+      Response.console(this.currentTile.getExits());
+      this.actionQuery();
+    } catch (e) {
+      Response.error(`Error entering tile`, e);
+    }
   }
 
   public aquireAction(action: string, subject: string) {
@@ -246,7 +250,7 @@ export class GameController {
     let items = '';
     this.currentTile.items.forEach((item) => {
       if (!this.items.isHidden(item) && !this.items.wasTaken(item)) {
-        items += `There is a ${chalk.underline.bold(
+        items += `There is ${chalk.underline.bold(
           this.items.getName(item)
         )} here. `;
       }

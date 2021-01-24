@@ -1,9 +1,9 @@
 import fs from 'fs';
 import { Choice } from '../types/choice';
 import { Game } from '../types/game';
+import { Items } from '../types/items';
 import { GameController } from './gameController';
 import { GameMap } from './gameMap';
-import { Items } from './items';
 import * as Response from './response';
 import { Select } from './select';
 

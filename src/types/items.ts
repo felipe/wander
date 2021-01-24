@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 // import { User } from '../types/user'
 import { Item } from '../types/item';
 import { Tile } from '../types/tile';
@@ -29,7 +31,7 @@ export class Items {
 
   public getItem(location: Tile, itemName: string) {
     const formattedItemName = this.getItemId(itemName);
-    const item = this.items.get(this.getItemId(itemName));
+    const item = this.items.get(formattedItemName);
     return item && this.validate(location, item, formattedItemName)
       ? item
       : null;
@@ -39,12 +41,18 @@ export class Items {
     const formattedItemName = this.getItemId(itemName);
     const item = this.items.get(formattedItemName);
     return item && this.validate(location, item, formattedItemName)
-      ? item.getDescription()
+      ? `${item.getDescription()}${this.getTextItemList(
+          location,
+          item.getItems()
+        )}`
       : `There is no ${itemName} here.`;
   }
 
   public getItemId(subject: string) {
-    return this.camelize(subject);
+    const camelizedString = this.camelize(subject);
+    return this.items.has(camelizedString)
+      ? camelizedString
+      : this.findByAlias(camelizedString);
   }
 
   private loadItems(rawItems: {}): Map<string, Item> {
@@ -66,6 +74,33 @@ export class Items {
     return (
       item && location.items.includes(formattedItemName) && !item.isDestroyed()
     );
+  }
+
+  private getTextItemList(location: Tile, items: string[]): string {
+    let itemString = ` It contains `;
+
+    items.forEach((item) => {
+      const currentItem = this.getItem(location, item);
+      itemString += `${chalk.underline.bold(currentItem?.getName())}`;
+    });
+
+    return items.length > 0 ? itemString : '';
+  }
+
+  private findByAlias(subject: string): string {
+    let name = '';
+    // Todo: Clean this up, this foreach might not be the best way of doing it and the catch is not great
+    try {
+      this.items.forEach((i) => {
+        name = i.hasAlias(subject) ? i.getId() : '';
+        if (name !== '') {
+          throw Error(); // This is just to break out of the loop
+        }
+      });
+    } catch (e) {
+      // Silence
+    }
+    return name;
   }
 
   private camelize(phrase: string): string {

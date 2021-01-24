@@ -1,0 +1,140 @@
+{
+  "title": "The Chalet",
+  "node": "the_chalet",
+  "copyright": "Solution Nine",
+  "startTile": "chalet",
+  "startInventory": [],
+  "tileType": "square",
+  "tiles": {
+	"chalet": {
+	  "id": "chalet",
+	  "name": "Chalet",
+	  "description": "You are standing in a small chalet. The kitchen, living area, and bed are all in the same space.",
+	  "items": [ "kitchenArea", "livingArea", "bedArea", "cupboard", "matches", "sofa", "looseChange", "sink", "window", "fryingPan" ],
+	  "value": 1,
+	  "exits": {},
+	  "exitAlias": {}
+	}
+  },
+  "actions": {},
+  "items": {
+  	"kitchenArea": {
+	  "name": "Kitchen Area",
+	  "nameAlias": [ "kitchen" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": false,
+	  "hidden": true,
+	  "description": "Fully Functional kitchen. Cupboard, small sink, and a cute window.",
+	  "durability": 1,
+	  "messages": {}
+	},
+	"livingArea": {
+	  "name": "Living Area",
+	  "nameAlias": [ "living", "living room" ],
+	  "items": [ "sofa" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": false,
+	  "hidden": true,
+	  "description": "There's a well-worn sofa.",
+	  "durability": 1,
+	  "messages": {}
+	},
+	"bedArea": {
+	  "name": "Bed Area",
+	  "nameAlias": [ "bed" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": false,
+	  "hidden": true,
+	  "description": "No magic happens here.",
+	  "durability": 1,
+	  "messages": {}
+	},
+	"cupboard": {
+	  "name": "Cupboard",
+	  "nameAlias": [ "cabinets" ],
+	  "items": [ "matches" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": false,
+	  "hidden": true,
+	  "description": "It has doors that open and shelves inside, for storage.",
+	  "durability": 1,
+	  "messages": {}
+	},
+	"matches": {
+	  "article": "a",
+	  "name": "Set of Matches",
+	  "nameAlias": [ "matches" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": true,
+	  "hidden": true,
+	  "description": "A game or contest in which two or more persons.",
+	  "durability": 1,
+	  "messages": {}	
+	},
+	"window": {
+	  "article": "",
+	  "name": "Cute Window",
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": false,
+	  "hidden": true,
+	  "description": "Seems like a sink would fit through here",
+	  "durability": 1,
+	  "messages": {}	
+	},
+	"sink": {
+	  "article": "",
+	  "name": "Kitchen Sink",
+	  "items": [ "fryingPan" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": false,
+	  "hidden": true,
+	  "description": "Dont go throwing this out the window.",
+	  "durability": 1,
+	  "messages": {}	
+	},	
+	"sofa": {
+	  "article": "a",
+	  "name": "Sofa",
+	  "items": [ "looseChange" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": false,
+	  "hidden": true,
+	  "description": "It looks lived in, almost literally.",
+	  "durability": 1,
+	  "messages": {}	
+	},
+	"looseChange": {
+	  "article": "some",
+	  "name": "Loose Change",
+	  "nameAlias": [ "change", "coins" ],
+	  "value": 1,
+	  "quantity": 1,
+	  "obtainable": true,
+	  "hidden": true,
+	  "description": "Coins of many sizes, denominations and weight.",
+	  "durability": 1,
+	  "messages": {}	
+	},
+	"fryingPan": {
+		  "article": "a",
+		  "name": "Frying Pan",
+		  "nameAlias": [ "pan", "frypan" ],
+		  "value": 1,
+		  "quantity": 1,
+		  "obtainable": true,
+		  "hidden": true,
+		  "description": "Made of iron, looks heavy.",
+		  "durability": 1,
+		  "messages": {}	
+		}
+  },
+  "npcs": {}
+}
