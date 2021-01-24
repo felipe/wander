@@ -6,7 +6,7 @@ jobs:
   'node-10':
     docker:
       - image: circleci/node:10
-    working_directory: ~/typescript-starter
+    working_directory: ~/wander
     steps:
       - checkout
       # Download and cache dependencies
@@ -27,7 +27,7 @@ jobs:
   'node-latest':
     docker:
       - image: circleci/node:latest
-    working_directory: ~/typescript-starter
+    working_directory: ~/wander
     steps:
       - checkout
       - restore_cache:
